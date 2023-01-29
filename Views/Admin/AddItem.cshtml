@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewBag.Title = "Add Item";
+    Layout = "~/Views/AdminLayout.cshtml";
+}
+
+<div class="main-content">
+    <header>
+        <h2>
+            <label for="nav-toggle">
+                <span class="las la-bars"></span>
+            </label>
+            Inventories / Add Item
+        </h2>
+    </header>
+
+    <main>
+
+        <div class="inventory-add-container">
+            <div class="inventory-form-container">
+                <form action="">
+                    <div class="details personal">
+                        <div class="inventory-form-header">
+                            ITEM DETAILS
+                        </div>
+                        <div class="inventory-form-contents">
+                            <div class="fields">
+                                <div class="input-field">
+                                    <label>Item ID</label>
+                                    <input type="number" placeholder="00000" readonly>
+                                </div>
+
+                                <div class="input-field">
+                                    <label>Item Name</label>
+                                    <input type="text" placeholder="Enter item name" required>
+                                </div>
+
+                                <div class="input-field">
+                                    <label>Category</label>
+                                    <select required>
+                                        <option disabled selected>Select Category</option>
+                                        <option>...</option>
+                                        <option>..</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-field">
+                                    <label>Type</label>
+                                    <select required>
+                                        <option disabled selected>Select Category</option>
+                                        <option>...</option>
+                                        <option>..</option>
+                                    </select>
+                                </div>
+
+                                <div class="input-field">
+                                    <label>Size</label>
+                                    <input type="number" placeholder="00000" required>
+                                </div>
+
+                                <div class="input-field">
+                                    <label>Quantity</label>
+                                    <input type="number" placeholder="00000" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-add-btns">
+                        <button class="save" onclick="infoOpenPopup()">
+                            <span class="btnText">Save</span>
+                            <i class="las la-check-square"></i>
+                        </button>
+
+                        <button class="cancel">
+                            <span class="btnText" onclick="canOpenPopup()">Cancel</span>
+                            <i class="las la-window-close"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="info-pop-container" id="info-popup">
+            <img src="../../../images/information.png">
+            <h2>System Warning!</h2>
+            <p>Do you want to save the item on the list?</p>
+            <button type="button" onclick="openPopup() + infoClosePopup()">Yes</button>
+            <button type="button" onclick="infoClosePopup()">Cancel</button>
+        </div>
+
+        <div class="can-pop-container" id="can-popup">
+            <img src="../../../images/warning.png">
+            <h2>System Warning!</h2>
+            <p>Are you sure you don't want to save the item on the list?</p>
+            <button type="button" onclick="remOpenPopup() + canClosePopup()">Yes</button>
+            <button type="button" onclick="canClosePopup()">Cancel</button>
+        </div>
+
+        <div class="save-pop-container" id="popup">
+            <img src="../../../images/tick.png">
+            <h2>Added!</h2>
+            <p>Item details has been added successfully!</p>
+            <button type="button" onclick="closePopup()">OK</button>
+        </div>
+
+        <div class="rem-pop-container" id="rem-popup">
+            <img src="../../../images/remove.png">
+            <h2>Cancel!</h2>
+            <p>Item details has not added in the list!</p>
+            <button type="button" onclick="remClosePopup()">OK</button>
+        </div>
+
+    </main>
+
+    <script>
+
+        let infopopup = document.getElementById("info-popup");
+
+        function infoOpenPopup() {
+            infopopup.classList.add("info-popup-show")
+        }
+
+        function infoClosePopup() {
+            infopopup.classList.remove("info-popup-show")
+        }
+
+        let canpopup = document.getElementById("can-popup");
+
+        function canOpenPopup() {
+            canpopup.classList.add("can-popup-show")
+        }
+
+        function canClosePopup() {
+            canpopup.classList.remove("can-popup-show")
+        }
+
+        let popup = document.getElementById("popup");
+
+        function openPopup() {
+            popup.classList.add("open-popup-show")
+        }
+
+        function closePopup() {
+            popup.classList.remove("open-popup-show")
+        }
+
+        let rempopup = document.getElementById("rem-popup");
+
+        function remOpenPopup() {
+            rempopup.classList.add("rem-popup-show")
+        }
+
+        function remClosePopup() {
+            rempopup.classList.remove("rem-popup-show")
+        }
+
+    </script>
