@@ -1,3 +1,25 @@
+/* 
+    00 - GENERAL STYLES
+    01 - MESSEGE BOX STYLES
+    02 - SIDEBAR STLES
+    03 - SIDEBAR TOGGLE/HEADER/MAIN STYLES
+    04 - DASHBOARD STYLES
+    05 - INVENTORY STYLES
+    06 - PURCHASE REQUEST STYLES
+    07 - DEPLOYMENT STYLES
+    08 - SUPPLY STYLES
+    09 - PURCHASING STYLES
+    10 - USER STYLES
+    11 - PROJECT STYLES
+    12 - RESPONSIVE STYLES - TENTATIVE DO NOT EDIT
+
+*/
+
+
+
+
+
+/* 00 -  GENERAL STYLES*/
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
@@ -64,6 +86,36 @@ table:wb:-webkit-scrollbar {
     background-color: var(--text-color-red);
 }
 
+table {
+    border-collapse: collapse;
+}
+
+thead tr {
+    
+    border-bottom: 2px solid #000;
+}
+
+thead td {
+    font-weight: 700;
+}
+
+tbody tr {
+    border-bottom: 1px solid #DDDDDD;
+}
+
+
+td {
+    padding: .5rem 1rem;
+    font-size: .9rem;
+    color: #222;
+}
+
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
 main {
     margin-top: 45px;
     padding: 2rem 1.5rem;
@@ -71,7 +123,9 @@ main {
     min-height: 100vh;
 }
 
-/****************   MESSEGE BOX STYLES  ******************/
+/* END */
+
+/****************   01 - MESSEGE BOX STYLES  ******************/
 .info-pop-container {
     width: 400px;
     background: #16215B;
@@ -365,20 +419,20 @@ main {
 
 
 
-/*********************************************************/
+/************************* END ********************************/
 
 
-/* STYE FOR SIDEBAR MENU */
+/******************* 02 - SIDEBAR STLE ***********************/
 .sidebar {
     width: 300px;
     position: fixed;
     left: 0;
     top: 0;
     height: 100%;
-    /*background-image: url("../images/bg-logo.jpg");*/
     background-color: #fff;
     z-index: 100;
     transition: width 300ms;
+    overflow: auto;
 }
 
 .sidebar-brand {
@@ -456,8 +510,6 @@ main {
     font-size: 1rem;
 }
 
-  
-  /* Style the sidenav links and the dropdown button */
 .oper-dropdown-btn {
     border: none;
     background: none;
@@ -465,22 +517,14 @@ main {
     outline: none;
     margin-bottom: 30px;
   }
-  
-  /* On mouse-over */
-  
-  
-  /* Main content */
-  .main {
-    margin-left: 200px; /* Same as the width of the sidenav */
-    font-size: 20px; /* Increased text to enable scrolling */
+ 
+.main {
+    margin-left: 200px; 
+    font-size: 20px; 
     padding: 0px 10px;
-  }
+}
   
-  /* Add an active class to the active dropdown button */
-
-  
-  /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-  .dropdown-container {
+ .dropdown-container {
     display: block;    
     margin-top: -15px;
     padding: .5rem;
@@ -489,9 +533,6 @@ main {
     width: 100%;
   }
 
-  
-  /* Some media queries for responsiveness */
- 
 .logo-float {
     position: absolute;
     bottom: 20px;
@@ -503,14 +544,12 @@ main {
     max-width: 50%;
 }
 
-
 .sidebar-logout {
     position: absolute;
     bottom: 20px;
     width: 100%;
     margin-bottom: 1.7rem;
     padding-left: 1rem;
-
 }
 
 .sidebar-logout a {
@@ -520,19 +559,14 @@ main {
     font-size: 1.1rem;
 }
 
-
 .sidebar-logout a span:first-child {
     font-size: 1.5rem;
     padding-right: 1rem;
 }
 
-
-
-
 .footer {
     background: #16215B;
-    height: 40px;
-    
+    height: 40px;    
 }
 
 .footer-con {    
@@ -551,14 +585,9 @@ main {
     height: 30px;
 }
 
+/************************* END ********************************/
+/********* 03 - SIDEBAR TOGGLE/HEADER/MAIN STYLES *********/
 
-
-
-/* STYLE FOR HOVER IN SIDEBAR */
-
-
-
-/* STYLE FOR HEADER */
 #nav-toggle:checked + .sidebar {
     width: 70px;
 }
@@ -587,11 +616,10 @@ main {
     padding-left: 0rem;
 }
 
-#nav-toggle:checked + .chart1 {
-    
+#nav-toggle:checked ~ .scatter .inventory-sum {
+    height: 700px;
+    width: 700px;
 }
-
-
 
 #nav-toggle:checked + .sidebar .user-wrapper h4,
 #nav-toggle:checked + .sidebar .user-wrapper small,
@@ -608,20 +636,16 @@ main {
     margin-left: 70px;
 }
 
-
 #nav-toggle:checked ~ .main-content header,
 #nav-toggle:checked ~ form .main-content header {
     width: calc(100% - 70px);
     left: 70px;
 }
 
-
 .main-content {
     transition: margin-left 300ms;
     margin-left: 300px;
 }
-
-
 
 header {
     background-color: #16215B;
@@ -636,7 +660,6 @@ header {
     height: 70px;
     transition: left 300ms;
 }
-
 
 header h2, h3, h4 {
     color: #fff;
@@ -657,7 +680,6 @@ header right {
     position: fixed;
     right: 10px;
 }
-
 
 
 .user-wrapper {
@@ -681,9 +703,6 @@ header right {
     display: inline-block;
     color: var(--5th-color);
 }
-
-/* STYE FOR MAIN CONTENT */
-
 
 right .yr-drop-btn {
     height: 20px;
@@ -844,16 +863,13 @@ right .d-drop-btn span {
     display: block;
 }
 
-
-
-
-
-
-
-/********************** DASHBOARD ***********************/
+/******************************* END ********************************/
+/********************** 04 - DASHBOARD STYLES ***********************/
 
 .summary {
-    margin-bottom: 50px;
+    margin-bottom: 80px;
+    display: block; 
+   
 }
 
 .summary-title {
@@ -862,80 +878,201 @@ right .d-drop-btn span {
     margin-bottom: 10px;
 }
 
-.sum-chart-card {    
-    width: 50%;
+.sum-chart-card {       
+    width: 75%;
     height: 200px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    padding-left: 5%;   
-    padding-right: 5%;
 }
 
-.pie-container {
-    display: flex;
-    flex-direction: row;
-    padding-top: 30px;
-    padding-left: 15%;
-    padding-right: 15%;
-    padding-bottom: 30px;
+.sum-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    margin-top: 1rem;
 }
 
-.pie1 {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 8px solid#16215B;
-    display: inline;
-    margin-left: 10px;
-    margin-right: 10px;    
-}
-.pie2 {
-    width: 100%;
-    max-width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 8px solid#6ECCAF;
-    display: inline;
-    margin-left: 10px;
-    margin-right: 10px;    
-}
-.pie3 {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 8px solid#E64848;
-    display: inline;
-    margin-left: 10px;
-    margin-right: 10px;  
-}
-
-
-.pie-percent {
-    display: inherit;
-    margin-top: 35px;
-}
-
-.pie-percent h3 {
-    color: #7F8487;
-    font-size: 2rem;
-}
-
-.pie-title {
-    display: block;
-}
-
-.pie-title label {
-    color: #000;
-    font-weight: 800;
-}
-
-.card-title h3 {
+.sum-card-title h3 {
     font-size: 1rem;
     color: #7F8487;
-    margin-left: 4px;
     margin-bottom: 5px;
-    left: 2px;
+    margin-top: 20px;
+}
+
+.sum-card-single {
+    display:block;
+    justify-content: space-between;
+    background-color: #fff;
+    padding: 1rem;
+    border-left: 4px solid #16215B;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.inv-circle-wrap {    
+    width: 150px;
+    height: 150px;
+    background: #f1f5f9;
+    border-radius: 50%;
+    border: 1px solid #cdcbd0;
+}
+
+.inv-circle-wrap .inv-circle .inv-mask,
+.inv-circle-wrap .inv-circle .inv {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.inv-mask .inv {
+    clip: rect(0px, 75px, 150px, 0px);
+    background-color: #86E5FF;
+}
+
+.inv-circle-wrap .inv-circle .inv-mask {
+    clip: rect(0px, 150px, 150px, 75px);
+}
+
+.inv-mask.inv-full,
+.inv-circle .inv {
+    animation: inv ease-in-out 1s;
+    transform: rotate(180deg);
+}
+
+@keyframes inv{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+.inv-circle-wrap .inv-inside-circle {
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    background: #fff;
+    line-height: 120px;
+    text-align: center;
+    margin-top: 14px;
+    margin-left: 14px;
+    color: #000;
+    position: absolute;
+    z-index: none;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.proj-circle-wrap {    
+    width: 150px;
+    height: 150px;
+    background: #f1f5f9;
+    border-radius: 50%;
+    border: 1px solid #cdcbd0;
+}
+
+.proj-circle-wrap .proj-circle .proj-mask,
+.proj-circle-wrap .proj-circle .proj {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.proj-mask .proj {
+    clip: rect(0px, 75px, 150px, 0px);
+    background-color: #B3FFAE;
+}
+
+.proj-circle-wrap .proj-circle .proj-mask {
+    clip: rect(0px, 150px, 150px, 75px);
+}
+
+.proj-mask.proj-full,
+.proj-circle .proj {
+    animation: inv ease-in-out 1s;
+    transform: rotate(135deg);
+}
+
+@keyframes proj{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(135deg);
+    }
+}
+
+.proj-circle-wrap .proj-inside-circle {
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    background: #fff;
+    line-height: 120px;
+    text-align: center;
+    margin-top: 14px;
+    margin-left: 14px;
+    color: #000;
+    position: absolute;
+    z-index: none;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.pur-circle-wrap {    
+    width: 150px;
+    height: 150px;
+    background: #f1f5f9;
+    border-radius: 50%;
+    border: 1px solid #cdcbd0;
+}
+
+.pur-circle-wrap .pur-circle .pur-mask,
+.pur-circle-wrap .pur-circle .pur {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.pur-mask .pur {
+    clip: rect(0px, 75px, 150px, 0px);
+    background-color: #FF8B8B;
+}
+
+.pur-circle-wrap .pur-circle .pur-mask {
+    clip: rect(0px, 150px, 150px, 75px);
+}
+
+.pur-mask.pur-full,
+.pur-circle .pur {
+    animation: inv ease-in-out 1s;
+    transform: rotate(45deg);
+}
+
+@keyframes pur{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(45deg);
+    }
+}
+
+.pur-circle-wrap .pur-inside-circle {
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+    background: #fff;
+    line-height: 120px;
+    text-align: center;
+    margin-top: 14px;
+    margin-left: 14px;
+    color: #000;
+    position: absolute;
+    z-index: none;
+    font-weight: 700;
+    font-size: 2em;
 }
 
 .cards {
@@ -943,19 +1080,39 @@ right .d-drop-btn span {
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
     margin-top: 1rem;
+    margin-bottom: 50px;
+    background-color: #fff;
+    border-left: 4px solid #16215B;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+.card-title {
+    border-left: 2px solid #f0f0f0;
+}
+
+.card-title h3 {
+    font-size: 1rem;
+    color: #7F8487;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.card-title .card-single .card-container {
+    margin-left: 10px;
 }
 
 
 .card-single {
     display:block;
-    justify-content: space-between;
-    background-color: #fff;
+    justify-content: space-between;    
     padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+   
 }
 
 .card-container h3 {
+    margin-left: 0px;
     font-size: 1rem;
     color: #16215B;
 }
@@ -967,7 +1124,7 @@ right .d-drop-btn span {
 .card-details label {
     font-size: 1.5rem;
     font-weight: 800;
-    margin-right: 10px;
+    padding-right: 10px;
 }
 
 .card-details span {
@@ -992,8 +1149,12 @@ right .d-drop-btn span {
 
 .card {
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 5px;    
+}
+.inventory-sum {
+    width: auto;
+    height: auto;
+    overflow: hidden;
 }
 
 .inventory-sum h3 {
@@ -1058,7 +1219,6 @@ right .d-drop-btn span {
 }
 
 
-
 .scatter {
     width: 100%;
     min-height: 300px;
@@ -1081,12 +1241,8 @@ right .d-drop-btn span {
     list-style-type: circle;
 }
 
-
-
 /************************** END *************************/
-
-
-/***************** INVENTORY STYLE ****************/
+/***************** 05 - INVENTORY STYLES ****************/
 .upper-section {
     display: flex;
     align-items: center;
@@ -1139,8 +1295,7 @@ right .d-drop-btn span {
     background-color: #fff;
     border-radius: 5px;
     border: 1px solid #B2B2B2;
-    margin: 0;
-    
+    margin: 0;    
 }
 
 .dropdown .drop-btn span {
@@ -1183,8 +1338,6 @@ right .d-drop-btn span {
     border-radius: 5px;    
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-
-
 
 .inventory-projects {
     margin-top: 10px;  
@@ -1493,200 +1646,372 @@ right .d-drop-btn span {
     align-items: center;
 }
 
-/* END */
+/************************* END ********************************/
 
-/* REQUEST-TABLE STYLE */
-.request {
+/************* 06 - PURCHASE REQUEST STYLES *******************/
+
+.purchase {
     background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #B2B2B2;
+    border-radius: 5px;    
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.request-grid {
-    padding: 2rem;
-    top: 1.5rem;
+.purchase-projects {
+    margin-top: 10px;  
+    margin-left: 30px;  
+    margin-right: 30px;
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: 100% auto;
 }
 
-.request-header {    
-    border-bottom: 1px solid #f0f0f0;
-    padding: 1rem;
+.purchase-body {
+    padding: 30px;
 }
 
-.req-buttons-style {
+.purchase-header {    
+    margin-left: 40px;
+    margin-top: 50px;
+    margin-right: 40px;
+}
+
+.purchase-header h3 {
+    font-size: 1.5rem;
+    color: #000;
+    margin-bottom: -40px;
+}
+
+
+.purchase-body table td label {
+    color: #000;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.purchase-body table td .stat-appr {
+    color: #A8E890;
+}
+
+.purchase-body table td .stat-dec {
+    color: #EC7272;
+}
+
+.purchase-body table td .stat-pen {
+    color: #39B5E0;
+}
+
+
+.purchase-header .purchase-buttons-style {
+    display: flex;
+    justify-content: right;
+}
+
+.purchase-header button {    
+    width: 100px;
+    height: 35px;
+    margin-left: 10px;
+    border-radius: 2px;
+    transition: all ease-in-out 0.2s;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #B2B2B2;
+}
+
+.purchase-buttons-style {
     display: flex;
     justify-content: right;
     margin-top: -30px;
 }
 
-.request-header button {    
-    width: 45px;
-    height: 35px;
-    margin-left: 10px;
-    border: 1px solid var(--text-color-black);
-    border-radius: 5px;
-    transition: all ease-in-out 0.2s;
-    cursor: pointer;
-    background-color: #fff;
-    color: #000;
-}
-
-.request-header button a {
-    color: inherit;
-    text-decoration: inherit;
-}
-
-.request-header .req-buttons-style span {
-    padding-top: .2rem;
-    font-size: 1.3rem;
-}
-
-.req-buttons-style button:hover {
-    color: #fff;
-    width: 100px;
-    border: 1px solid var(--text-color-black);
-    background-color: #16215B;
+.purchase-header label {
+    font-size: 1rem;
+    margin-right: 5px;
 }
 
 
-
-/* NEW-REQUEST STYLE */
-.new-popup {
-    display: none;
-    position: fixed;
-    z-index: 1; /* Sit on top */
-    background-color: rgb(0,0,0); /* Black fallback color */
-    background-color: rgba(0,0,0, 0.2); /* Black w/opacity */
-    height: 100%;
-    width: 100%;
-}
-
-.new {
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #B2B2B2;
-    height: 370px;
-}
-
-.new-grid {
-    margin-left: 29rem;
-    margin-top: 1.5rem;
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: 100% auto;
-    width: 40%;
-    height: 100%;
-}
-
-.new-header {    
-    border-bottom: 1px solid #f0f0f0;
-    padding: 1rem;
-}
-
-.new-header h3 {
-    margin-top: 10px;
-    font-size: 1.5rem;
-}
-
-.new-buttons-style {
-    display: flex;
-    justify-content: right;
-    margin-top: -40px;
-}
-
-.new-header button {    
-    width: 45px;
-    height: 35px;
-    margin-left: 10px;
-    border: 1px solid var(--text-color-black);
-    border-radius: 5px;
-    transition: all ease-in-out 0.2s;
-    cursor: pointer;
-    background-color: #fff;
-}
-
-.new-header .new-buttons-style span {
-    padding-top: .2rem;
-    font-size: 1.3rem;
-}
-
-.new-header button {
-    color: #000;
+.purchase-header .purchase-buttons-style span {   
     font-size: 1.2rem;
 }
 
-.new-header button a {
-    color: inherit;
-    text-decoration: inherit;
+.purchase-header .purchase-buttons-style button {
+    width: 50px;
+    color: #000;
 }
 
-.new-header .add-buttons-style span {
-    padding-top: .2rem;
-    font-size: 1.3rem;
-}
-
-
-.new-buttons-style button:hover {
+.purchase-header .purchase-buttons-style button:hover {
     color: #fff;
-    width: 100px;
     border: 1px solid var(--text-color-black);
     background-color: #16215B;
 }
 
-.new-body {
-    margin-top: 1rem;
+
+.purchase-header button span {
+    font-size: 1.2rem;
 }
 
-.new-info {
+.purchase-header button a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.purchase-body .purchase-action-style {
+    display: block;
+    margin-left: -10px;
+    margin-top: 5px;
+}
+
+.purchase-body .purchase-action-style button {
+    width: 45px;
+    height: 35px;
+    margin-left: 10px;
+    border-radius: 5px;
+    transition: all ease-in-out 0.2s;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #B2B2B2;
+    padding-top: .2rem;
+    font-size: 1.3rem;
+}
+
+.purchase-action-style button {
+    color: #000;
+}
+
+.purchase-body .purchase-action-style button:hover{
+    color: #fff;
+    border: 1px solid var(--text-color-black);
+    background-color: #16215B;
+}
+
+.purchase-action-style button a {
+    color: inherit;
+}
+
+.purchase-header .purchase-sort-btn {
+    height: 35px;
+    width: 70px;    
+    cursor: pointer;
+    font-size: 1rem;  
+    outline: none;
+    color: var(--text-color-black);    
+    background-color: #fff;
+    border-radius: 2px;
+    border: 1px solid #B2B2B2;
+    margin: 0;
+    margin-left: 10px;
+}
+
+.purchase-header .purchase-sort-btn span {
+    margin-top: auto;
+    margin-left: auto;
+    font-size: 1rem;
+}
+
+.purchase-sort-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;    
+    min-width: 100px;
+    border-radius: 5px;
+    border: 1px solid #B2B2B2;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.purchase-sort-content a {
+    font-size: .8rem;
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.purchase-sort-content a:hover {
+    color: var(--6th-color);
+    background-color: #16215B;
+    border-radius: 2px;
+}
+
+.purchase-sort-show {
+    margin-top: 35px;
+    margin-right: -30px;
+    display: block;
+}
+
+.purchase-add-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 2rem;
+    margin-top: 0rem;
+}
+
+.purchase-form-container .purchase-form-header {
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.purchase-add-container .purchase-form-container {
+    position: relative;
     width: 100%;
-    margin-top: 2px;
-    margin-left: 4rem;
-    display: inline-block;
-    border: none;
-
+    border-radius: 6px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
-.new-info label {
+.purchase-form-container .purchase-form-header::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 35px;
+    border-radius: 8px;
+    background-color: #4070f4;
+}
+
+.supurchasepply-form-container form {
+    position: relative;
+    margin-top: 16px;
+    min-height: 290px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+.purchase-form-container form .purchase-form {
+    position: absolute;
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+
+.purchase-form-container form .fields {
     display: flex;
-    margin-top: 2px;
-}
-
-.new-info b {
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
     margin-top: 10px;
 }
 
-.new-info input {
-    margin-left: .5rem;
-    width: 50%;
-    height: 100%;
-    padding: .5rem;
-    font-size: 1rem;    
-    border: none;
-    border-bottom: 1px solid #B2B2B2;
+.purchase-form-container form .fields .input-field {
+    display: flex;
+    width: calc(100% / 2 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.purchase-form-container .input-field label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #2e2e2e;
+}
+
+.purchase-form-container .input-field a{
+    font-weight: 800;
+}
+
+
+.purchase-form-container .input-field input, select{
     outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 42px;
+    margin: 8px 0;
 }
 
-.new-info input::placeholder {
-    font-style: italic;
-    color: #B2B2B2;
+.purchase-form-container .input-field input:focus,
+.supurchasepply-form-container .input-field select:focus{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
 }
 
-.new-info input:hover {
+.purchase-form-container .input-field select,
+.purchase-form-container .input-field input[type="date"]{
+    color: #707070;
+}
+
+
+
+.purchase-form-container .input-field input[type="date"]:valid{
+    color: #333;
+}
+
+.purchase-form-container button, .btnText{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    max-width: 200px;
+    width: 100%;
     border: none;
-    border-bottom: 2px solid #16215B;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    margin: 25px 0;
+    background-color: #16215B;
+    transition: all 0.3s linear;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 400;
 }
 
-.new-info input:focus {
-    border: none;
-    border-bottom: 2px solid #277BC0;
+.purchase-form-container .save:hover{
+    background-color: #A8E890;
 }
 
-/**************** END *****************/
+.purchase-form-container  .cancel:hover{
+    background-color: #e74c3c;
+}
 
-/********** DEPLOYMENT STYLE **********/
+.purchase-form-container  button i,
+.purchase-form-container  .backBtn i{
+    margin: 0 6px;
+}
+
+.purchase-form-container  .backBtn i{
+    transform: rotate(180deg);
+}
+
+.purchase-form-container  .buttons{
+    display: flex;
+    align-items: center;
+}
+
+.purchase-details {
+    margin-top: 20px;
+}
+
+.purchase-form-table {
+    margin-top: 20px;
+}
+
+.purchase-form-table .purchase-form-table-style {
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+}
+
+.purchase-form-table .purchase-form-table-style table thead td {
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.purchase-form-table-style table tbody td label {
+    color: #000;
+    font-size: .9rem;    
+}
+
+/********************** END ************************/
+
+
+
+/************ 07 - DEPLOYMENT STYLES ************/
 
 .deploy {
     background-color: #fff;
@@ -2471,371 +2796,8 @@ right .d-drop-btn span {
     background-color: #e74c3c;
 }
 
-
 /******************* END ************************/
-
-/************* PURCHASE REQUEST STYLE *******************/
-
-.purchase {
-    background-color: #fff;
-    border-radius: 5px;    
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.purchase-projects {
-    margin-top: 10px;  
-    margin-left: 30px;  
-    margin-right: 30px;
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: 100% auto;
-}
-
-.purchase-body {
-    padding: 30px;
-}
-
-.purchase-header {    
-    margin-left: 40px;
-    margin-top: 50px;
-    margin-right: 40px;
-}
-
-.purchase-header h3 {
-    font-size: 1.5rem;
-    color: #000;
-    margin-bottom: -40px;
-}
-
-
-.purchase-body table td label {
-    color: #000;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.purchase-body table td .stat-appr {
-    color: #A8E890;
-}
-
-.purchase-body table td .stat-dec {
-    color: #EC7272;
-}
-
-.purchase-body table td .stat-pen {
-    color: #39B5E0;
-}
-
-
-.purchase-header .purchase-buttons-style {
-    display: flex;
-    justify-content: right;
-}
-
-.purchase-header button {    
-    width: 100px;
-    height: 35px;
-    margin-left: 10px;
-    border-radius: 2px;
-    transition: all ease-in-out 0.2s;
-    cursor: pointer;
-    background-color: #fff;
-    border: 1px solid #B2B2B2;
-}
-
-.purchase-buttons-style {
-    display: flex;
-    justify-content: right;
-    margin-top: -30px;
-}
-
-.purchase-header label {
-    font-size: 1rem;
-    margin-right: 5px;
-}
-
-
-.purchase-header .purchase-buttons-style span {   
-    font-size: 1.2rem;
-}
-
-.purchase-header .purchase-buttons-style button {
-    width: 50px;
-    color: #000;
-}
-
-.purchase-header .purchase-buttons-style button:hover {
-    color: #fff;
-    border: 1px solid var(--text-color-black);
-    background-color: #16215B;
-}
-
-
-.purchase-header button span {
-    font-size: 1.2rem;
-}
-
-.purchase-header button a {
-    color: inherit;
-    text-decoration: inherit;
-}
-
-.purchase-body .purchase-action-style {
-    display: block;
-    margin-left: -10px;
-    margin-top: 5px;
-}
-
-.purchase-body .purchase-action-style button {
-    width: 45px;
-    height: 35px;
-    margin-left: 10px;
-    border-radius: 5px;
-    transition: all ease-in-out 0.2s;
-    cursor: pointer;
-    background-color: #fff;
-    border: 1px solid #B2B2B2;
-    padding-top: .2rem;
-    font-size: 1.3rem;
-}
-
-.purchase-action-style button {
-    color: #000;
-}
-
-.purchase-body .purchase-action-style button:hover{
-    color: #fff;
-    border: 1px solid var(--text-color-black);
-    background-color: #16215B;
-}
-
-.purchase-action-style button a {
-    color: inherit;
-}
-
-.purchase-header .purchase-sort-btn {
-    height: 35px;
-    width: 70px;    
-    cursor: pointer;
-    font-size: 1rem;  
-    outline: none;
-    color: var(--text-color-black);    
-    background-color: #fff;
-    border-radius: 2px;
-    border: 1px solid #B2B2B2;
-    margin: 0;
-    margin-left: 10px;
-}
-
-.purchase-header .purchase-sort-btn span {
-    margin-top: auto;
-    margin-left: auto;
-    font-size: 1rem;
-}
-
-.purchase-sort-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;    
-    min-width: 100px;
-    border-radius: 5px;
-    border: 1px solid #B2B2B2;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-.purchase-sort-content a {
-    font-size: .8rem;
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-}
-
-.purchase-sort-content a:hover {
-    color: var(--6th-color);
-    background-color: #16215B;
-    border-radius: 2px;
-}
-
-.purchase-sort-show {
-    margin-top: 35px;
-    margin-right: -30px;
-    display: block;
-}
-
-.purchase-add-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 2rem;
-    margin-top: 0rem;
-}
-
-.purchase-form-container .purchase-form-header {
-    position: relative;
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-}
-
-.purchase-add-container .purchase-form-container {
-    position: relative;
-    width: 100%;
-    border-radius: 6px;
-    padding: 30px;
-    background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
-
-.purchase-form-container .purchase-form-header::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    height: 3px;
-    width: 35px;
-    border-radius: 8px;
-    background-color: #4070f4;
-}
-
-.supurchasepply-form-container form {
-    position: relative;
-    margin-top: 16px;
-    min-height: 290px;
-    background-color: #fff;
-    overflow: hidden;
-}
-
-.purchase-form-container form .purchase-form {
-    position: absolute;
-    background-color: #fff;
-    transition: 0.3s ease;
-}
-
-.purchase-form-container form .fields {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 10px;
-}
-
-.purchase-form-container form .fields .input-field {
-    display: flex;
-    width: calc(100% / 2 - 15px);
-    flex-direction: column;
-    margin: 4px 0;
-}
-
-.purchase-form-container .input-field label {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #2e2e2e;
-}
-
-.purchase-form-container .input-field a{
-    font-weight: 800;
-}
-
-
-.purchase-form-container .input-field input, select{
-    outline: none;
-    font-size: 14px;
-    font-weight: 400;
-    color: #333;
-    border-radius: 5px;
-    border: 1px solid #aaa;
-    padding: 0 15px;
-    height: 42px;
-    margin: 8px 0;
-}
-
-.purchase-form-container .input-field input:focus,
-.supurchasepply-form-container .input-field select:focus{
-    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
-}
-
-.purchase-form-container .input-field select,
-.purchase-form-container .input-field input[type="date"]{
-    color: #707070;
-}
-
-
-
-.purchase-form-container .input-field input[type="date"]:valid{
-    color: #333;
-}
-
-.purchase-form-container form button, .btnText{
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 45px;
-    max-width: 200px;
-    width: 100%;
-    border: none;
-    outline: none;
-    color: #fff;
-    border-radius: 5px;
-    margin: 25px 0;
-    background-color: #16215B;
-    transition: all 0.3s linear;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 400;
-}
-
-.purchase-form-container form .save:hover{
-    background-color: #A8E890;
-}
-
-.purchase-form-container form .cancel:hover{
-    background-color: #e74c3c;
-}
-
-.purchase-form-container form button i,
-.purchase-form-container form .backBtn i{
-    margin: 0 6px;
-}
-
-.purchase-form-container form .backBtn i{
-    transform: rotate(180deg);
-}
-
-.purchase-form-container form .buttons{
-    display: flex;
-    align-items: center;
-}
-
-.purchase-details {
-    margin-top: 20px;
-}
-
-.purchase-form-table {
-    margin-top: 20px;
-}
-
-.purchase-form-table .purchase-form-table-style {
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 10px;
-}
-
-.purchase-form-table .purchase-form-table-style table thead td {
-    font-size: 1rem;
-    font-weight: 800;
-}
-
-.purchase-form-table-style table tbody td label {
-    color: #000;
-    font-size: .9rem;    
-}
-
-/******************* END ************************/
-
-/************* SUPPLY STYLE *********************/
+/************* 08 - SUPPLY STYLES *********************/
 
 .supply {
     background-color: #fff;
@@ -3400,10 +3362,9 @@ right .d-drop-btn span {
     background-color: #e74c3c;
 }
 
+/************************* END ******************************/
 
-/******************* END ************************/
-
-/************* PURCHASING STYLE *********************/
+/*************** 09 - PURCHASING STYLES *********************/
 
 .order {
     background-color: #fff;
@@ -3697,7 +3658,7 @@ right .d-drop-btn span {
     color: #333;
 }
 
-.order-form-container form button, .btnText{
+.order-form-container  button, .btnText{
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -3716,24 +3677,24 @@ right .d-drop-btn span {
     font-weight: 400;
 }
 
-.order-form-container form .save:hover{
+.order-form-container  .save:hover{
     background-color: #A8E890;
 }
 
-.order-form-container form .cancel:hover{
+.order-form-container  .cancel:hover{
     background-color: #e74c3c;
 }
 
-.order-form-container form button i,
-.order-form-container form .backBtn i{
+.order-form-container  button i,
+.order-form-container  .backBtn i{
     margin: 0 6px;
 }
 
-.order-form-container form .backBtn i{
+.order-form-container  .backBtn i{
     transform: rotate(180deg);
 }
 
-.order-form-container form .buttons{
+.order-form-container  .buttons{
     display: flex;
     align-items: center;
 }
@@ -3980,7 +3941,7 @@ right .d-drop-btn span {
 
 /******************* END ************************/
 
-/******************** USER STYLE ************************/
+/******************** 10 - USER STYLES ************************/
 .users {
     background-color: #fff;
     border-radius: 5px;    
@@ -4462,227 +4423,151 @@ right .d-drop-btn span {
 
 /**************************** END ******************************/
 
-/********************* PROJECT STYLE **************************/
-
-.proj-popup {
-    display: none;
-    position: fixed;
-    z-index: 1; /* Sit on top */
-    background-color: rgb(0,0,0); /* Black fallback color */
-    background-color: rgba(0,0,0, 0.2); /* Black w/opacity */
-    height: 100%;
-    width: 100%;
-}
+/********************* 11 - PROJECT STYLES **************************/
 
 .proj {
     background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #B2B2B2;
-    height: 360px;
+    border-radius: 5px;    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
-.proj-grid {
-    margin-left: 24rem;
-    margin-top: 1.5rem;
+.proj-projects {
+    margin-top: 10px;  
+    margin-left: 30px;  
+    margin-right: 30px;
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: 100% auto;
-    width: 40%;
-    height: 100%;
-}
-
-.proj-header {    
-    border-bottom: 1px solid #f0f0f0;
-    padding: 1rem;
-}
-
-.proj-header h3 {
-    margin-top: 10px;
-    font-size: 1.5rem;
-}
-
-.proj-buttons-style {
-    display: flex;
-    justify-content: right;
-    margin-top: -40px;
-}
-
-.proj-header button {    
-    width: 45px;
-    height: 35px;
-    margin-left: 10px;
-    border: 1px solid var(--text-color-black);
-    border-radius: 5px;
-    transition: all ease-in-out 0.2s;
-    cursor: pointer;
-    background-color: #fff;
-}
-
-.proj-header .proj-buttons-style span {
-    padding-top: .2rem;
-    font-size: 1.3rem;
-}
-
-.proj-header button {
-    color: #000;
-    font-size: 1.2rem;
-}
-
-.proj-header button a {
-    color: inherit;
-    text-decoration: inherit;
-}
-
-.proj-header .proj-buttons-style span {
-    padding-top: .2rem;
-    font-size: 1.3rem;
-}
-
-
-.proj-buttons-style button:hover {
-    color: #fff;
-    width: 100px;
-    border: 1px solid var(--text-color-black);
-    background-color: #16215B;
 }
 
 .proj-body {
-    margin-top: 1rem;
+    padding: 30px;
 }
 
-.proj-info {
-    width: 100%;
-    margin-top: 2px;
-    margin-left: 4rem;
-    display: inline-block;
-    border: none;
-
+.proj-body table td label {
+    color: #000;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
-.proj-info label {
+.step-wizard {
+    height: auto;
+    width: auto;
+    margin-left: -100px;
+    
+}
+.step-wizard-list{    
+    color: #333;
     display: flex;
-    margin-top: 2px;
+    padding: 20px 10px;
+    position: relative;
+    z-index: 10;
 }
 
-.proj-info b {
+.step-wizard-item{
+    padding: 0 20px;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive:1;
+    flex-grow: 1;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    min-width: 170px;
+    position: relative;
+}
+.step-wizard-item + .step-wizard-item:after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 19px;
+    background: #16215B;
+    width: 100%;
+    height: 2px;
+    transform: translateX(-50%);
+    z-index: -10;
+}
+.progress-count{
+    height: 40px;
+    width:40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 600;
+    margin: 0 auto;
+    position: relative;
+    z-index:10;
+    color: transparent;
+}
+.progress-count:after{
+    content: "";
+    height: 40px;
+    width: 40px;
+    background: #16215B;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -10;
+}
+.progress-count:before{
+    content: "";
+    height: 10px;
+    width: 20px;
+    border-left: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -60%) rotate(-45deg);
+    transform-origin: center center;
+}
+.progress-label{
+    font-size: 14px;
+    font-weight: 600;
     margin-top: 10px;
 }
-
-.proj-info input {
-    margin-left: .5rem;
-    width: 50%;
-    height: 100%;
-    padding: .5rem;
-    font-size: 1rem;    
-    border: none;
-    border-bottom: 1px solid #B2B2B2;
-    outline: none;
+.current-item .progress-count:before,
+.current-item ~ .step-wizard-item .progress-count:before{
+    display: none;
 }
-
-.proj-info input::placeholder {
-    font-style: italic;
-    color: #B2B2B2;
+.current-item ~ .step-wizard-item .progress-count:after{
+    height:10px;
+    width:10px;
 }
-
-.proj-info input:hover {
-    border: none;
-    border-bottom: 2px solid #16215B;
+.current-item ~ .step-wizard-item .progress-label{
+    opacity: 0.5;
 }
-
-.proj-info input:focus {
-    border: none;
-    border-bottom: 2px solid #277BC0;
+.current-item .progress-count:after{
+    background: #fff;
+    border: 2px solid #16215B;
 }
-
-
-/* END */
-
-/* TABLE STYLE */
-
-table {
-    border-collapse: collapse;
-}
-
-thead tr {
-    
-    border-bottom: 2px solid #000;
-}
-
-thead td {
-    font-weight: 700;
-}
-
-tbody tr {
-    border-bottom: 1px solid #DDDDDD;
-}
-
-
-td {
-    padding: .5rem 1rem;
-    font-size: .9rem;
-    color: #222;
-}
-
-
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.customer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: .5rem .7rem;
-}
-
-.info {
-    display: flex;
-    align-items: center;
-}
-
-.info img {
-    border-radius: 50%;
-    margin-right: 1rem;
-}
-
-.info h4 {
-    font-size: .8rem;
-    font-weight: 700;
-    color: #222;
-}
-
-.info small {
-    font-weight: 600;
-    color: var(--text-color);
-}
-
-.contact span {
-    font-size: 1.2rem;
-    display: inline-block;
-    margin-left: .5rem;
+.current-item .progress-count{
     color: #16215B;
 }
-/* END */
 
+/************************* END ********************************/
 
-/* FULLSCREEN ~ MAXIMIZE MINIMIZE */
+/******** 12 - RESPONSIVE STYLES - TENTATIVE DO NOT EDIT ******/
 
 @media all and (max-width: 1544px) {
     .expo-save-btns button {
         width: 100px;
     }
 
-    .pie1, .pie2, .pie3 {
-        width: 100px;
-        height: 100px;
-    }
 }
 
 @media all and (max-width: 1400px) {     
     main {
         min-width: calc(70vh - 70px);
         min-height: calc(100vh - 70px);
+    }
+
+    header #dt {
+            display: none   ;
     }
 
     .recent-grid {
@@ -4989,6 +4874,16 @@ td {
 
 @media all and (max-width: 900px) {
 
+    .sum-chart-card {    
+        width: 70%;   
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 600px;
+    }
+
+    .sum-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
     .customers {
         margin-left: 0rem;
     }
@@ -5382,9 +5277,28 @@ td {
         min-width: calc(20vh - 70px);
     }
 
+    header h3 span {
+        display: none;
+    }
+
+    .sum-chart-card {
+        padding-left: 0;
+        padding-right: 0;
+        margin-bottom: 600px;
+    }
+
+    .sum-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+
     .cards {
         grid-template-columns: 100%;
         max-width: 100%;
+    }
+
+    .card-title {
+        border-bottom: 2px solid #f0f0f0;
     }
 
 
@@ -5430,8 +5344,7 @@ td {
     }
 
     .inventory-buttons-style {
-        margin-top: 50px;
-        margin-left: -10px;        
+        margin-left: 200px;        
     }
 
     .purchase-header h3 {
@@ -5536,4 +5449,4 @@ td {
     }
 
 }
-
+/************************* END ********************************/
