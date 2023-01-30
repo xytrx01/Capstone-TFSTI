@@ -149,11 +149,16 @@
             <button type="button" onclick="expoClosePopup()">OK</button>
         </div>
     </main>
-
+    <script src="~/Scripts/Inventory.js"></script>
     <script>
 
         /* When the user clicks on the button,
         toggle between hiding and showing the dropdown content */
+
+        windows.onload = function (e) {
+            GetAll();
+        }
+
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
         }
