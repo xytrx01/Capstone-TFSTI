@@ -1,4 +1,5 @@
-﻿
+﻿@using Capstone_TFSTI.Models
+@model IEnumerable<Employee>
 @{
     ViewBag.Title = "Users";
     Layout = "~/Views/AdminLayout.cshtml";
@@ -57,63 +58,41 @@
                 <div class="users">
                     <div class="user-body">
                         <div class="table-responsive" style="overflow-x: auto;">
+
                             <table width="100%">
                                 <thead>
                                     <tr>
                                         <td>Image</td>
-                                        <td>ID</td>
-                                        <td>Name</td>
-                                        <td>Mobile No.</td>
-                                        <td>Role</td>
+                                        <td>@Html.DisplayNameFor(model => model.emp_name)</td>
+                                        <td>>@Html.DisplayNameFor(model => model.emp_hiredDate)</td>
+                                        <td>>@Html.DisplayNameFor(model => model.emp_contact)</td>
+                                        <td>>@Html.DisplayNameFor(model => model.emp_position)</td>
                                         <td>Status</td>
                                         <td>Action</td>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><img src="~/Content/images/profile.png" alt=""></td>
-                                        <td><label>00001</label></td>
-                                        <td><label>Clarisse C. Vaquez</label></td>
-                                        <td><label>0923758923</label></td>
-                                        <td><label>Supervisor</label></td>
-                                        <td><label class="stat-act">Active</label></td>
-                                        <td>
-                                            <div class="user-action-style">
-                                                <button class="edit-btn" title="EDIT SELECTED ITEM" onclick="openEditForm()"> <a href="#"><span class="lar la-edit"></span></a></button>
-                                                <button class="del-btn" title="DELETE SELECTED ITEM" onclick="canOpenPopup()"> <a href="#"><span class="lar la-trash-alt"></span></a></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="~/Content/images/profile.png" alt=""></td>
-                                        <td><label>00001</label></td>
-                                        <td><label>Clarisse C. Vaquez</label></td>
-                                        <td><label>0923758923</label></td>
-                                        <td><label>Supervisor</label></td>
-                                        <td><label class="stat-in">Inactive</label></td>
-                                        <td>
-                                            <div class="user-action-style">
-                                                <button class="edit-btn" title="EDIT SELECTED ITEM" onclick="openEditForm()"> <a href="#"><span class="lar la-edit"></span></a></button>
-                                                <button class="del-btn" title="DELETE SELECTED ITEM" onclick="canOpenPopup()"> <a href="#"><span class="lar la-trash-alt"></span></a></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><img src="~/Content/images/profile.png" alt=""></td>
-                                        <td><label>00001</label></td>
-                                        <td><label>Clarisse C. Vaquez</label></td>
-                                        <td><label>0923758923</label></td>
-                                        <td><label>Supervisor</label></td>
-                                        <td><label class="stat-act">Active</label></td>
-                                        <td>
-                                            <div class="user-action-style">
-                                                <button class="edit-btn" title="EDIT SELECTED ITEM" onclick="openEditForm()"> <a href="#"><span class="lar la-edit"></span></a></button>
-                                                <button class="del-btn" title="DELETE SELECTED ITEM" onclick="canOpenPopup()"> <a href="#"><span class="lar la-trash-alt"></span></a></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <td></td>
+                                            <td>@Html.DisplayFor(modelItem => item.emp_name)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.emp_hiredDate)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.emp_contact)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.emp_position)</td>
+                                           
+                                            <td><label class="stat-act">Active</label></td>
+                                            <td>
+                                                <div class="user-action-style">
+                                                    <button class="edit-btn" title="EDIT SELECTED ITEM" onclick="openEditForm()"> <a href="#"><span class="lar la-edit"></span></a></button>
+                                                    <button class="del-btn" title="DELETE SELECTED ITEM" onclick="canOpenPopup()"> <a href="#"><span class="lar la-trash-alt"></span></a></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                }
                             </table>
+
                         </div>
                     </div>
                 </div>
