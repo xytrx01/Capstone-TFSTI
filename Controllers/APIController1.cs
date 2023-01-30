@@ -21,7 +21,7 @@ namespace Capstone_TFSTI.Controllers
             {
                 using (var _context = new TFSEntity())
                 {
-                    var users = _context.Employees.Select(x => x).ToList();
+                    var users = _context.Employee.Select(x => x).ToList();
 
                     List<NewEmployeeModel> emp = users.Select(x => new NewEmployeeModel
                     {
@@ -61,7 +61,7 @@ namespace Capstone_TFSTI.Controllers
                     {
                         _id = int.Parse(val);
                     }
-                    var user = _context.Employees.Where(x => x.emp_name == val || x.emp_no == _id || x.emp_hiredDate == val).SingleOrDefault();
+                    var user = _context.Employee.Where(x => x.emp_name == val || x.emp_no == _id || x.emp_hiredDate == val).SingleOrDefault();
 
                     if (user != null)
                     {
@@ -100,7 +100,7 @@ namespace Capstone_TFSTI.Controllers
                 {
                     using (var _context = new TFSEntity())
                     {
-                        var employee = _context.Employees.Where(x => x.emp_no == _emp.emp_no).SingleOrDefault();
+                        var employee = _context.Employee.Where(x => x.emp_no == _emp.emp_no).SingleOrDefault();
                         if (employee == null)
                         {
                             Employee emp = new Employee()
@@ -112,7 +112,7 @@ namespace Capstone_TFSTI.Controllers
                                 emp_position = _emp.emp_position
                             };
 
-                            _context.Employees.Add(_emp);
+                            _context.Employee.Add(_emp);
                             _context.SaveChanges();
                             return Ok("Employee Added");
                         }
@@ -138,7 +138,7 @@ namespace Capstone_TFSTI.Controllers
                 {
                     using (var _context = new TFSEntity())
                     {
-                        var emp = _context.Employees.Where(x => x.emp_no == _emp.emp_no).SingleOrDefault();
+                        var emp = _context.Employee.Where(x => x.emp_no == _emp.emp_no).SingleOrDefault();
                         if (emp != null)
                         {
                             emp.emp_no = _emp.emp_no;

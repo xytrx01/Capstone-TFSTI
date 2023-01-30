@@ -1,10 +1,12 @@
-﻿@using Capstone_TFSTI.Models
-@model IEnumerable<Employee>
+﻿@model IEnumerable<Capstone_TFSTI.Models.Employee>
+
 @{
     ViewBag.Title = "Users";
     Layout = "~/Views/AdminLayout.cshtml";
-    ViewBag.Users = "active";
+
 }
+
+<h2>Users</h2>
 
 <div class="main-content">
     <header>
@@ -58,30 +60,57 @@
                 <div class="users">
                     <div class="user-body">
                         <div class="table-responsive" style="overflow-x: auto;">
+                            <table class="table" width="100%">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.emp_name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.emp_hiredDate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.emp_contact)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.emp_position)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Credential.username)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Role.emp_no)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Status.emp_no)
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
 
-                            <table width="100%">
-                                <thead>
-                                    <tr>
-                                        <td>Image</td>
-                                        <td>@Html.DisplayNameFor(model => model.emp_name)</td>
-                                        <td>>@Html.DisplayNameFor(model => model.emp_hiredDate)</td>
-                                        <td>>@Html.DisplayNameFor(model => model.emp_contact)</td>
-                                        <td>>@Html.DisplayNameFor(model => model.emp_position)</td>
-                                        <td>Status</td>
-                                        <td>Action</td>
-                                    </tr>
-                                </thead>
                                 @foreach (var item in Model)
                                 {
                                     <tbody>
                                         <tr>
-                                            <td></td>
-                                            <td>@Html.DisplayFor(modelItem => item.emp_name)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.emp_hiredDate)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.emp_contact)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.emp_position)</td>
-                                           
-                                            <td><label class="stat-act">Active</label></td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.emp_name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.emp_hiredDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.emp_contact)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.emp_position)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Credential.username)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Role.emp_no)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status.emp_no)
+                                            </td>
                                             <td>
                                                 <div class="user-action-style">
                                                     <button class="edit-btn" title="EDIT SELECTED ITEM" onclick="openEditForm()"> <a href="#"><span class="lar la-edit"></span></a></button>
@@ -91,80 +120,79 @@
                                         </tr>
                                     </tbody>
                                 }
-                            </table>
 
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+</div>
 
-        <div class="can-pop-container" id="can-popup">
-            <img src="~/Content/images/warning.png">
-            <h2>System Warning!</h2>
-            <p>Do you want to remove the user on the list?</p>
-            <button type="button" onclick="remOpenPopup() + canClosePopup()">Yes</button>
-            <button type="button" onclick="canClosePopup()">Cancel</button>
-        </div>
+<div class="can-pop-container" id="can-popup">
+    <img src="~/Content/images/warning.png">
+    <h2>System Warning!</h2>
+    <p>Do you want to remove the user on the list?</p>
+    <button type="button" onclick="remOpenPopup() + canClosePopup()">Yes</button>
+    <button type="button" onclick="canClosePopup()">Cancel</button>
+</div>
 
-        <div class="rem-pop-container" id="rem-popup">
-            <img src="~/Content/images/remove.png">
-            <h2>Deleted!</h2>
-            <p>User removed in the list successfully!</p>
-            <button type="button" onclick="remClosePopup()">OK</button>
-        </div>
-
-    </main>
-
-    <script>
+<div class="rem-pop-container" id="rem-popup">
+    <img src="~/Content/images/remove.png">
+    <h2>Deleted!</h2>
+    <p>User removed in the list successfully!</p>
+    <button type="button" onclick="remClosePopup()">OK</button>
+</div>
+</main>
+<script>
 
 
-        function userFiltFunction() {
-            document.getElementById("userFiltDropdown").classList.toggle("user-filter-show");
-        }
+    function userFiltFunction() {
+        document.getElementById("userFiltDropdown").classList.toggle("user-filter-show");
+    }
 
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function (e) {
-            if (!e.target.matches('.user-filter-btn')) {
-                var myDropdown = document.getElementById("userFiltDropdown");
-                if (myDropdown.classList.contains('user-filter-show')) {
-                    myDropdown.classList.remove('user-filter-show');
-                }
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (e) {
+        if (!e.target.matches('.user-filter-btn')) {
+            var myDropdown = document.getElementById("userFiltDropdown");
+            if (myDropdown.classList.contains('user-filter-show')) {
+                myDropdown.classList.remove('user-filter-show');
             }
         }
+    }
 
-        function userSortFunction() {
-            document.getElementById("userSortDropdown").classList.toggle("user-sort-show");
-        }
+    function userSortFunction() {
+        document.getElementById("userSortDropdown").classList.toggle("user-sort-show");
+    }
 
-        // Close the dropdown if the user clicks outside of it
-        window.onclick = function (e) {
-            if (!e.target.matches('.user-sort-btn')) {
-                var myDropdown = document.getElementById("userSortDropdown");
-                if (myDropdown.classList.contains('user-sort-show')) {
-                    myDropdown.classList.remove('user-sort-show');
-                }
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (e) {
+        if (!e.target.matches('.user-sort-btn')) {
+            var myDropdown = document.getElementById("userSortDropdown");
+            if (myDropdown.classList.contains('user-sort-show')) {
+                myDropdown.classList.remove('user-sort-show');
             }
         }
+    }
 
-        let canpopup = document.getElementById("can-popup");
+    let canpopup = document.getElementById("can-popup");
 
-        function canOpenPopup() {
-            canpopup.classList.add("can-popup-show")
-        }
+    function canOpenPopup() {
+        canpopup.classList.add("can-popup-show")
+    }
 
-        function canClosePopup() {
-            canpopup.classList.remove("can-popup-show")
-        }
+    function canClosePopup() {
+        canpopup.classList.remove("can-popup-show")
+    }
 
-        let rempopup = document.getElementById("rem-popup");
+    let rempopup = document.getElementById("rem-popup");
 
-        function remOpenPopup() {
-            rempopup.classList.add("rem-popup-show")
-        }
+    function remOpenPopup() {
+        rempopup.classList.add("rem-popup-show")
+    }
 
-        function remClosePopup() {
-            rempopup.classList.remove("rem-popup-show")
-        }
+    function remClosePopup() {
+        rempopup.classList.remove("rem-popup-show")
+    }
 
-    </script>
+</script>
