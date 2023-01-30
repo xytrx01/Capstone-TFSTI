@@ -25,6 +25,10 @@ namespace Capstone_TFSTI.Controllers
         //  Inventory
         public ActionResult Inventory()
         {
+            if (Session["emp_no"] == null)
+            {
+                return RedirectToAction("Login", "Base");
+            }
             return View();
         }
         public ActionResult AddItem()
