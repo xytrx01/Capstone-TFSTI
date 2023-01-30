@@ -11,7 +11,7 @@ namespace Capstone_TFSTI.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-
+        // this comment is for testing
        
         public ActionResult Dashboard()
         {
