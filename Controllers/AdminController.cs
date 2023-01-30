@@ -5,6 +5,9 @@ using Capstone_TFSTI.Models;
 using Capstone_TFSTI.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Capstone_TFSTI.Controllers
 {
@@ -12,7 +15,7 @@ namespace Capstone_TFSTI.Controllers
     {
         // GET: Admin
         // this comment is for testing
-       
+        TFSEntity obj = new TFSEntity();
         public ActionResult Dashboard()
         {
             if(Session["emp_no"] == null)
@@ -37,11 +40,10 @@ namespace Capstone_TFSTI.Controllers
         }
 
         //  Users
-       public ActionResult Users()
+       public ActionResult Users(string searching)
         {
-            TFSEntity obj = new TFSEntity();
-           
-            return View(obj.Employee.ToList());
+    
+            return View(obj.Employee.Where(x => x.emp_name.Contains(searching) || searching == null).ToList());
         }
 
        

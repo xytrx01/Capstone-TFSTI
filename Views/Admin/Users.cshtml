@@ -6,7 +6,8 @@
 
 }
 
-<h2>Users</h2>
+
+    <h2>Users</h2>
 
 <div class="main-content">
     <header>
@@ -22,7 +23,13 @@
         <div class="upper-section">
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                <input type="text" placeholder="Search here">
+                @using (Html.BeginForm("Users", "Admin", FormMethod.Get))
+                {   
+                    
+                    @Html.TextBox("searching")
+
+
+                }
             </div>
         </div>
 
@@ -62,27 +69,27 @@
                         <div class="table-responsive" style="overflow-x: auto;">
                             <table class="table" width="100%">
                                 <tr>
-                                    <th>
+                                    <td>
                                         @Html.DisplayNameFor(model => model.emp_name)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayNameFor(model => model.emp_hiredDate)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayNameFor(model => model.emp_contact)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayNameFor(model => model.emp_position)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayNameFor(model => model.Credential.username)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayNameFor(model => model.Role.emp_no)
-                                    </th>
-                                    <th>
+                                    </td>
+                                    <td>
                                         @Html.DisplayNameFor(model => model.Status.emp_no)
-                                    </th>
+                                    </td>
                                     <th>Action</th>
                                 </tr>
 
