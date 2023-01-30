@@ -1,8 +1,8 @@
-﻿using Microsoft.Owin.Security.OAuth;
+﻿using Capstone_TFSTI.Models;
+using Microsoft.Owin.Security.OAuth;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Capstone_TFSTI.Models;
 
 namespace Capstone_TFSTI
 {
@@ -79,7 +79,7 @@ namespace Capstone_TFSTI
                         {
                             identity.AddClaim(new Claim(ClaimTypes.Role, authorization));
                             identity.AddClaim(new Claim("username", _user.username));
-                            identity.AddClaim(new Claim(ClaimTypes.Name,authorization ));
+                            identity.AddClaim(new Claim(ClaimTypes.Name, authorization));
                             context.Validated(identity);
                             return;
                         }

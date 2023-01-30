@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace Capstone_TFSTI
@@ -16,7 +12,7 @@ namespace Capstone_TFSTI
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
-                defaults: new { controller = "Base", action = "Login"}
+                defaults: new { controller = "Base", action = "Login" }
             );
         }
     }

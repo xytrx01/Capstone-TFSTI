@@ -167,19 +167,25 @@
     <Compile Include="AuthorizationProvider.cs" />
     <Compile Include="AuthorizeAttribute.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\APIController1.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\APIRequestHandler.cs" />
     <Compile Include="Models\Credential.cs">
       <DependentUpon>TFSEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dictionary.cs" />
     <Compile Include="Models\Employee.cs">
       <DependentUpon>TFSEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ErrorHandler.cs" />
     <Compile Include="Models\Inventory.cs">
       <DependentUpon>TFSEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginCredential.cs" />
+    <Compile Include="Models\NewEmployeeModel.cs" />
     <Compile Include="Models\Role.cs">
       <DependentUpon>TFSEntity.tt</DependentUpon>
     </Compile>
@@ -201,6 +207,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TFSEntity.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TokenCatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
