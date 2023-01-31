@@ -1,6 +1,7 @@
 ﻿let jsonArray = [];
 let filtered = [];
 let fixedArray = [];
+const table = document.querySelector('#myTable tbody');
 
 function GetAll() {
 
@@ -25,7 +26,9 @@ function GetAll() {
         .then(data => {
             jsonArray.push(data);
             fixArray();
-            setTable(fixedArray);
+            if (table !== null) {
+                setTable(fixedArray);
+            }
         })
         .catch(error => {
             console.error(error);
@@ -39,7 +42,6 @@ function fixArray() {
 }
 
 function setTable(array) {
-    const table = document.querySelector('#myTable tbody');
     table.innerHTML = '';
     if (array.length != 0) {
         for (var i = 0; i < array.length; i++) {
@@ -108,4 +110,40 @@ function SortByCategory(value) {
         category.innerHTML = 'Select Category';
         setTable(fixedArray);
     }
+}
+
+function setField(value) {
+    let name = document.querySelector('#itemName');
+    let size = document.querySelector('#itemSize');
+    let quantity = document.querySelector('#itemQuant');
+    let cat = document.getElementById("cat-select");
+    let type = document.getElementById("type-select");
+
+    for (var i = 0; i < fixedArray.length; i++) {
+        if (fixedArray[i].in_code == value) {
+            filtered.length = 0;
+            filtered.push(fixedArray[i]);
+        }
+    }
+    name.value = filtered[0].in_name;
+    size.value = filtered[0].in_size;
+    quantity.value = filtered[0].in_quantity;
+
+    // loop through all the options in the select element
+    for (let i = 0; i < cat.options.length; i++) {
+        let option = cat.options[i];
+        // check if the option value exists in the valuesToCompare array
+        if (filtered[0].in_category === option.value) {
+            cat.selectedIndex = i;
+        }
+    }
+
+    for (let i = 0; i < type.options.length; i++) {
+        let option = type.options[i];
+        // check if the option value exists in the valuesToCompare array
+        if (filtered[0].in_type === option.value) {
+            type.selectedIndex = i;
+        } 
+    }
+    console.log(`size val : ${size.value}`);
 }

@@ -15,10 +15,10 @@
     </header>
 
     <main>
-
+        @*<input type="text" id="barcode-input" style="display:none;">*@
         <div class="inventory-add-container">
             <div class="inventory-form-container">
-                <form action="" id="addForm">
+                <form action="" id="addForm" method="post">
                     <div class="details personal">
                         <div class="inventory-form-header">
                             ITEM DETAILS
@@ -27,50 +27,50 @@
                             <div class="fields">
                                 <div class="input-field">
                                     <label>Item ID</label>
-                                    <input type="text" placeholder="ABC-DEF-HIJ" id="codeField">
+                                    <input type="text" placeholder="ABC-DEF-HIJ" id="codeField" >
                                 </div>
 
                                 <div class="input-field">
                                     <label>Item Name</label>
-                                    <input type="text" placeholder="Enter item name" required>
+                                    <input type="text" placeholder="Enter item name" id="itemName" required disabled>
                                 </div>
 
                                 <div class="input-field">
                                     <label>Category</label>
-                                    <select required id="cat-select">
-                                        <option disabled selected>Select Category</option>
-                                        <option>Fittings</option>
-                                        <option>Gate Valves</option>
-                                        <option>Power Tools</option>
-                                        <option>Fire Extinguisher</option>
-                                        <option>Scaffolding</option>
+                                    <select required id="cat-select" disabled>
+                                        <option disabled selected>Category</option>
+                                        <option value="Fittings">Fittings</option>
+                                        <option value="Gate Valves">Gate Valves</option>
+                                        <option value="Power Tools">Power Tools</option>
+                                        <option value="Fire Extinguisher">Fire Extinguisher</option>
+                                        <option value="Scaffolding">Scaffolding</option>
                                     </select>
                                 </div>
 
                                 <div class="input-field">
                                     <label>Type</label>
-                                    <select required id="type-select">
-                                        <option disabled selected>Select Type</option>
-                                        <option>HFC-236 F</option>
-                                        <option>Machine</option>
+                                    <select required id="type-select" disabled>
+                                        <option disabled selected>Type</option>
+                                        <option value="HFC-236 F">HFC-236 F</option>
+                                        <option value="Machine">Machine</option>
                                     </select>
                                 </div>
 
                                 <div class="input-field">
                                     <label>Size</label>
-                                    <input type="number" placeholder="00000" required>
+                                    <input type="text" placeholder="00000" id="itemSize" required disabled>
                                 </div>
 
                                 <div class="input-field">
                                     <label>Quantity</label>
-                                    <input type="number" placeholder="00000" required>
+                                    <input type="text" placeholder="0" id="itemQuant" required disabled>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-add-btns">
-                        <button class="save" onclick="infoOpenPopup()" id="saveBtn">
+                        <button class="save" onclick="infoOpenPopup()" id="saveBtn" >
                             <span class="btnText">Save</span>
                             <i class="las la-check-square"></i>
                         </button>
@@ -88,7 +88,7 @@
             <img src="~/Content/images/information.png">
             <h2>System Warning!</h2>
             <p>Do you want to save the item on the list?</p>
-            <button type="button" onclick="openPopup() + infoClosePopup()">Yes</button>
+            <button type="button" onclick="openPopup() + infoClosePopup()" form="addForm">Yes</button>
             <button type="button" onclick="infoClosePopup()">Cancel</button>
         </div>
 
@@ -115,7 +115,7 @@
         </div>
 
     </main>
-
+    <script src="~/Scripts/Inventory.js"></script>
     <script>
 
         let infopopup = document.getElementById("info-popup");
@@ -124,18 +124,47 @@
         let form = document.getElementById("addForm");
         let cat = document.getElementById("cat-select");
         let type = document.getElementById("type-select");
+        //let barcode = document.getElementById("barcode-input");
+        let code = document.getElementById("codeField");
+        let prevVal = "";
+        let sliced = "";
 
-        window.addEventListener("keydown", function (event) {
+        window.onload = function () {
+            GetAll();
+        }
+
+        //code.addEventListener("input", function () {
+        //    prevVal = code.value;
+        //});
+
+        code.addEventListener("keydown", function (event) {
             // check if the entered key is a barcode scanner input
             if (event.which === 13 || event.keyCode === 13) {
                 // retrieve the scanned value
-                let inputElement = document.getElementById("codeField");
-                let scannedValue = inputElement.value;
-                // display the value in a p tag
-                return false;
+                event.preventDefault();
+
+                if (sliced.length == 0) {
+                    sliced = code.value;
+                }
+
+                if (code.value.length != prevVal.length) {
+                    if (prevVal.length != 0) {
+                        var index = 0;
+                        while (index <= prevVal.length) {
+                            index++;
+                        }
+                        sliced = code.value.slice(index - 1);
+                    }
+                }
+
+                if (sliced.length != 0) {
+                    code.value = sliced;
+                }
+
+                prevVal = code.value;
+                setField(prevVal);
             }
         });
-
 
         function resetForm() {
             for (let i = 0; i < form.elements.length; i++) {
