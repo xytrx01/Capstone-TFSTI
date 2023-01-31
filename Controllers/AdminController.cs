@@ -8,6 +8,7 @@ using System.Linq;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System;
 
 namespace Capstone_TFSTI.Controllers
 {
@@ -40,10 +41,13 @@ namespace Capstone_TFSTI.Controllers
         }
 
         //  Users
-       public ActionResult Users(string searching)
+        public ActionResult Users(string searching, string selectoption)
         {
-    
-            return View(obj.Employee.Where(x => x.emp_name.Contains(searching) || searching == null).ToList());
+                  
+               
+            return View(obj.Employee.Where(x => x.emp_name.Contains(searching) || searching == null).OrderBy(x => x.emp_no).ToList());
+                
+           
         }
 
        
@@ -53,6 +57,7 @@ namespace Capstone_TFSTI.Controllers
             return View();
         }
 
+      
         //  Purchasing
         #region
         public ActionResult Purchasing()

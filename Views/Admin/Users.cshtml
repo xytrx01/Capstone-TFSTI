@@ -68,35 +68,43 @@
                     <div class="user-body">
                         <div class="table-responsive" style="overflow-x: auto;">
                             <table class="table" width="100%">
+                                <thead>
                                 <tr>
                                     <td>
-                                        @Html.DisplayNameFor(model => model.emp_name)
+                                        ID
                                     </td>
                                     <td>
-                                        @Html.DisplayNameFor(model => model.emp_hiredDate)
+                                        Name
                                     </td>
                                     <td>
-                                        @Html.DisplayNameFor(model => model.emp_contact)
+                                        Date
                                     </td>
                                     <td>
-                                        @Html.DisplayNameFor(model => model.emp_position)
+                                        Contact
                                     </td>
                                     <td>
-                                        @Html.DisplayNameFor(model => model.Credential.username)
+                                        Position
                                     </td>
                                     <td>
-                                        @Html.DisplayNameFor(model => model.Role.emp_no)
+                                        Username
                                     </td>
                                     <td>
-                                        @Html.DisplayNameFor(model => model.Status.emp_no)
+                                        Role
                                     </td>
-                                    <th>Action</th>
+                                    <td>
+                                        Status
+                                    </td>
+                                    <td>Action</td>
                                 </tr>
+                                    </thead>
 
                                 @foreach (var item in Model)
                                 {
                                     <tbody>
                                         <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.emp_no)
+                                            </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.emp_name)
                                             </td>
@@ -113,7 +121,7 @@
                                                 @Html.DisplayFor(modelItem => item.Credential.username)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Role.emp_no)
+                                                @Html.DisplayFor(modelItem => item.Role.role1)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.Status.emp_no)
@@ -144,6 +152,8 @@
     <button type="button" onclick="canClosePopup()">Cancel</button>
 </div>
 
+   
+<input type="hidden" id="hiddenEmployeeId" />
 <div class="rem-pop-container" id="rem-popup">
     <img src="~/Content/images/remove.png">
     <h2>Deleted!</h2>
