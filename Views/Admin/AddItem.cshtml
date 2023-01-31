@@ -1,4 +1,5 @@
-﻿
+﻿@using Capstone_TFSTI.Models
+@model Inventory
 @{
     ViewBag.Title = "Add Item";
     Layout = "~/Views/AdminLayout.cshtml";
@@ -27,17 +28,17 @@
                             <div class="fields">
                                 <div class="input-field">
                                     <label>Item ID</label>
-                                    <input type="text" placeholder="ABC-DEF-HIJ" id="codeField" >
+                                    <input type="text" placeholder="ABC-DEF-HIJ" id="codeField" name="in_code">
                                 </div>
 
                                 <div class="input-field">
                                     <label>Item Name</label>
-                                    <input type="text" placeholder="Enter item name" id="itemName" required disabled>
+                                    <input type="text" placeholder="Enter item name" id="itemName" name="in_name" required readonly>
                                 </div>
 
                                 <div class="input-field">
                                     <label>Category</label>
-                                    <select required id="cat-select" disabled>
+                                    <select id="cat-select" name="in_category" readonly>
                                         <option disabled selected>Category</option>
                                         <option value="Fittings">Fittings</option>
                                         <option value="Gate Valves">Gate Valves</option>
@@ -49,7 +50,7 @@
 
                                 <div class="input-field">
                                     <label>Type</label>
-                                    <select required id="type-select" disabled>
+                                    <select id="type-select" name="in_type" readonly>
                                         <option disabled selected>Type</option>
                                         <option value="HFC-236 F">HFC-236 F</option>
                                         <option value="Machine">Machine</option>
@@ -58,19 +59,19 @@
 
                                 <div class="input-field">
                                     <label>Size</label>
-                                    <input type="text" placeholder="00000" id="itemSize" required disabled>
+                                    <input type="text" placeholder="00000" id="itemSize" name="in_size" readonly >
                                 </div>
 
                                 <div class="input-field">
                                     <label>Quantity</label>
-                                    <input type="text" placeholder="0" id="itemQuant" required disabled>
+                                    <input type="text" placeholder="0" name="in_quantity" id="itemQuant" required >
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-add-btns">
-                        <button class="save" onclick="infoOpenPopup()" id="saveBtn" >
+                        <button class="save" onclick="infoOpenPopup()" id="saveBtn">
                             <span class="btnText">Save</span>
                             <i class="las la-check-square"></i>
                         </button>
@@ -88,7 +89,7 @@
             <img src="~/Content/images/information.png">
             <h2>System Warning!</h2>
             <p>Do you want to save the item on the list?</p>
-            <button type="button" onclick="openPopup() + infoClosePopup()" form="addForm">Yes</button>
+            <button type="submit" form="addForm">Yes</button>
             <button type="button" onclick="infoClosePopup()">Cancel</button>
         </div>
 
@@ -100,12 +101,15 @@
             <button type="button" onclick="canClosePopup()">Cancel</button>
         </div>
 
-        <div class="save-pop-container" id="popup">
-            <img src="~/Content/images/tick.png">
-            <h2>Added!</h2>
-            <p>Item details has been added successfully!</p>
-            <button type="button" onclick="closePopup()">OK</button>
-        </div>
+        @if (ViewBag.Response != null)
+        {
+            <div class="save-pop-container open-popup-show" id="popup">
+                <img src="~/Content/images/tick.png">
+                <h2>Added!</h2>
+                <p>@ViewBag.Response</p>
+                <button type="button" onclick="closePopup()">OK</button>
+            </div>
+        }
 
         <div class="rem-pop-container" id="rem-popup">
             <img src="~/Content/images/remove.png">

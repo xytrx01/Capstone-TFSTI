@@ -52,6 +52,24 @@ namespace Capstone_TFSTI.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult AddItem(Inventory item)
+        {
+            try
+            {
+                var serializedModel = JsonConvert.SerializeObject(item);
+                var userToken = Session["access_token"].ToString();
+                var response = api_req.AddMethod("Warehouse/Inventory/Edit", userToken, serializedModel);
+
+                var json = JsonConvert.DeserializeObject(response);
+                ViewBag.Response = json.ToString();
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return View(ex);
+            }
+        }
 
         //  Users
         public ActionResult Users()
