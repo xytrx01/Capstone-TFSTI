@@ -7,7 +7,7 @@
 }
 
 
-    <h2>Users</h2>
+<h2>Users</h2>
 
 <div class="main-content">
     <header>
@@ -24,8 +24,8 @@
             <div class="search-wrapper">
                 <span class="las la-search"></span>
                 @using (Html.BeginForm("Users", "Admin", FormMethod.Get))
-                {   
-                    
+                {
+
                     @Html.TextBox("searching")
 
 
@@ -69,34 +69,34 @@
                         <div class="table-responsive" style="overflow-x: auto;">
                             <table class="table" width="100%">
                                 <thead>
-                                <tr>
-                                    <td>
-                                        ID
-                                    </td>
-                                    <td>
-                                        Name
-                                    </td>
-                                    <td>
-                                        Date
-                                    </td>
-                                    <td>
-                                        Contact
-                                    </td>
-                                    <td>
-                                        Position
-                                    </td>
-                                    <td>
-                                        Username
-                                    </td>
-                                    <td>
-                                        Role
-                                    </td>
-                                    <td>
-                                        Status
-                                    </td>
-                                    <td>Action</td>
-                                </tr>
-                                    </thead>
+                                    <tr>
+                                        <td>
+                                            ID
+                                        </td>
+                                        <td>
+                                            Name
+                                        </td>
+                                        <td>
+                                            Date
+                                        </td>
+                                        <td>
+                                            Contact
+                                        </td>
+                                        <td>
+                                            Position
+                                        </td>
+                                        <td>
+                                            Username
+                                        </td>
+                                        <td>
+                                            Role
+                                        </td>
+                                        <td>
+                                            Status
+                                        </td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
 
                                 @foreach (var item in Model)
                                 {
@@ -143,73 +143,75 @@
             </div>
         </div>
 </div>
-
+@using (Html.BeginForm())
+{
+    
 <div class="can-pop-container" id="can-popup">
     <img src="~/Content/images/warning.png">
     <h2>System Warning!</h2>
     <p>Do you want to remove the user on the list?</p>
-    <button type="button" onclick="remOpenPopup() + canClosePopup()">Yes</button>
+    <button name="X-HTTP-Method-Override"  onclick="remOpenPopup() + canClosePopup()" value="Delete" >Yes</button>
     <button type="button" onclick="canClosePopup()">Cancel</button>
 </div>
+}
 
-   
-<input type="hidden" id="hiddenEmployeeId" />
-<div class="rem-pop-container" id="rem-popup">
-    <img src="~/Content/images/remove.png">
-    <h2>Deleted!</h2>
-    <p>User removed in the list successfully!</p>
-    <button type="button" onclick="remClosePopup()">OK</button>
-</div>
-</main>
-<script>
+    <input type="hidden" id="hiddenEmployeeId" />
+    <div class="rem-pop-container" id="rem-popup">
+        <img src="~/Content/images/remove.png">
+        <h2>Deleted!</h2>
+        <p>User removed in the list successfully!</p>
+        <button type="button" onclick="remClosePopup()">OK</button>
+    </div>
+    </main>
+    <script>
 
 
-    function userFiltFunction() {
-        document.getElementById("userFiltDropdown").classList.toggle("user-filter-show");
-    }
+        function userFiltFunction() {
+            document.getElementById("userFiltDropdown").classList.toggle("user-filter-show");
+        }
 
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function (e) {
-        if (!e.target.matches('.user-filter-btn')) {
-            var myDropdown = document.getElementById("userFiltDropdown");
-            if (myDropdown.classList.contains('user-filter-show')) {
-                myDropdown.classList.remove('user-filter-show');
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (e) {
+            if (!e.target.matches('.user-filter-btn')) {
+                var myDropdown = document.getElementById("userFiltDropdown");
+                if (myDropdown.classList.contains('user-filter-show')) {
+                    myDropdown.classList.remove('user-filter-show');
+                }
             }
         }
-    }
 
-    function userSortFunction() {
-        document.getElementById("userSortDropdown").classList.toggle("user-sort-show");
-    }
+        function userSortFunction() {
+            document.getElementById("userSortDropdown").classList.toggle("user-sort-show");
+        }
 
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function (e) {
-        if (!e.target.matches('.user-sort-btn')) {
-            var myDropdown = document.getElementById("userSortDropdown");
-            if (myDropdown.classList.contains('user-sort-show')) {
-                myDropdown.classList.remove('user-sort-show');
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (e) {
+            if (!e.target.matches('.user-sort-btn')) {
+                var myDropdown = document.getElementById("userSortDropdown");
+                if (myDropdown.classList.contains('user-sort-show')) {
+                    myDropdown.classList.remove('user-sort-show');
+                }
             }
         }
-    }
 
-    let canpopup = document.getElementById("can-popup");
+        let canpopup = document.getElementById("can-popup");
 
-    function canOpenPopup() {
-        canpopup.classList.add("can-popup-show")
-    }
+        function canOpenPopup() {
+            canpopup.classList.add("can-popup-show")
+        }
 
-    function canClosePopup() {
-        canpopup.classList.remove("can-popup-show")
-    }
+        function canClosePopup() {
+            canpopup.classList.remove("can-popup-show")
+        }
 
-    let rempopup = document.getElementById("rem-popup");
+        let rempopup = document.getElementById("rem-popup");
 
-    function remOpenPopup() {
-        rempopup.classList.add("rem-popup-show")
-    }
+        function remOpenPopup() {
+            rempopup.classList.add("rem-popup-show")
+        }
 
-    function remClosePopup() {
-        rempopup.classList.remove("rem-popup-show")
-    }
+        function remClosePopup() {
+            rempopup.classList.remove("rem-popup-show")
+        }
 
-</script>
+    </script>

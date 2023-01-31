@@ -41,7 +41,7 @@ namespace Capstone_TFSTI.Controllers
         }
 
         //  Users
-        public ActionResult Users(string searching, string selectoption)
+        public ActionResult Users(string searching)
         {
                   
                
@@ -57,7 +57,20 @@ namespace Capstone_TFSTI.Controllers
             return View();
         }
 
-      
+        public ActionResult Edit(int emp_no)
+        {
+            return View();
+        }
+
+
+        [HttpDelete]
+        public ActionResult Edit(int emp_no, string foo)
+        {
+            return View();
+        }
+
+
+
         //  Purchasing
         #region
         public ActionResult Purchasing()
