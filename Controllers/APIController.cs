@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace Capstone_TFSTI.Controllers
 {
-    public class APIController1 : ApiController
+    public class APIController : ApiController
     {
         //  EMPLOYEE API
         #region

@@ -1,10 +1,35 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using Newtonsoft.Json;
+using Capstone_TFSTI.Models;
+using System.Collections.Generic;
 
 namespace Capstone_TFSTI.Controllers
 {
     public class AdminController : Controller
     {
         // GET: Admin
+        readonly APIRequestHandler api_req = new APIRequestHandler();
+
+        public ActionResult FindDataOf()
+        {
+            try
+            {
+                var userToken = Session["access_token"].ToString();
+                var response = api_req.GetAllMethod("/Warehouse/Inventory", userToken);
+
+                var json = JsonConvert.DeserializeObject<List<Inventory>>(response);
+
+                JsonResult result = Json(json, JsonRequestBehavior.AllowGet); // return the value as JSON and allow Get Method
+                Response.ContentType = "application/json"; // Set the Content-Type header
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return Json(ex);
+            }
+        }
+
         public ActionResult Dashboard()
         {
             if(Session["emp_no"] == null)
