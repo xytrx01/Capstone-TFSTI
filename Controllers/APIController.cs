@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace Capstone_TFSTI.Controllers
 {
-    public class APIController1 : ApiController
+    public class APIController : ApiController
     {
         //  EMPLOYEE API
         #region
@@ -21,7 +21,7 @@ namespace Capstone_TFSTI.Controllers
             {
                 using (var _context = new TFSEntity())
                 {
-                    var users = _context.Employee.Select(x => x).ToList();
+                    var users = _context.Employees.Select(x => x).ToList();
 
                     List<NewEmployeeModel> emp = users.Select(x => new NewEmployeeModel
                     {
@@ -61,7 +61,7 @@ namespace Capstone_TFSTI.Controllers
                     {
                         _id = int.Parse(val);
                     }
-                    var user = _context.Employee.Where(x => x.emp_name == val || x.emp_no == _id || x.emp_hiredDate == val).SingleOrDefault();
+                    var user = _context.Employees.Where(x => x.emp_name == val || x.emp_no == _id || x.emp_hiredDate == val).SingleOrDefault();
 
                     if (user != null)
                     {
@@ -100,7 +100,7 @@ namespace Capstone_TFSTI.Controllers
                 {
                     using (var _context = new TFSEntity())
                     {
-                        var employee = _context.Employee.Where(x => x.emp_no == _emp.emp_no).SingleOrDefault();
+                        var employee = _context.Employees.Where(x => x.emp_no == _emp.emp_no).SingleOrDefault();
                         if (employee == null)
                         {
                             Employee emp = new Employee()
@@ -112,7 +112,7 @@ namespace Capstone_TFSTI.Controllers
                                 emp_position = _emp.emp_position
                             };
 
-                            _context.Employee.Add(_emp);
+                            _context.Employees.Add(_emp);
                             _context.SaveChanges();
                             return Ok("Employee Added");
                         }
@@ -138,7 +138,7 @@ namespace Capstone_TFSTI.Controllers
                 {
                     using (var _context = new TFSEntity())
                     {
-                        var emp = _context.Employee.Where(x => x.emp_no == _emp.emp_no).SingleOrDefault();
+                        var emp = _context.Employees.Where(x => x.emp_no == _emp.emp_no).SingleOrDefault();
                         if (emp != null)
                         {
                             emp.emp_no = _emp.emp_no;
@@ -214,7 +214,7 @@ namespace Capstone_TFSTI.Controllers
                     {
                         id = int.Parse(val); // parse val into integer
                     }
-                    var user = _context.Inventories.Where(x => x.in_code.Contains(val) || x.in_name.Contains(val) || x.in_category.Contains(val) || x.in_type.Contains(val));
+                    var user = _context.Inventories.Where(x => x.in_code.Contains(val) || x.in_name.Contains(val) || x.in_category.Contains(val) || x.in_type.Contains(val) && x.in_status != "archived");
 
                     if (user != null)
                     {
@@ -282,7 +282,7 @@ namespace Capstone_TFSTI.Controllers
                             itemDB.in_quantity = _item.in_quantity;
                             _context.Entry(_item);
                             _context.SaveChanges();     //  Save to Database
-                            return Ok("Item Updated");
+                            return Ok("Process Completed!");
                         }
                         return BadRequest();
                     }
@@ -294,30 +294,32 @@ namespace Capstone_TFSTI.Controllers
                 return InternalServerError(ex);
             }
         }
-        //[Authorize(Roles = "admin,warehouse")]
-        //[Route("Warehouse/Inventory/Delete")]
-        //[HttpPost]
-        //public IHttpActionResult DeleteItem(int _itemID)
-        //{
-        //    try
-        //    {
-        //        using (var _context = new TFSEntity())
-        //        {
-        //            var item = _context.Inventories.Where(x => x.in_code == _itemID).SingleOrDefault();
-        //            if (item != null)
-        //            {
-        //                _context.Inventories.Remove(item); //   Remove() serves as delete in Entity Framework 6.0
-        //                _context.SaveChanges();
-        //                return Ok("Item Deleted");
-        //            }
-        //            return BadRequest();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return InternalServerError(ex);
-        //    }
-        //}
+        [Authorize(Roles = "admin,warehouse")]
+        [Route("Warehouse/Inventory/Delete")]
+        [HttpPost]
+        public IHttpActionResult DeleteItem(Inventory codeToFind)
+        {
+            try
+            {
+                var item = codeToFind.in_code;
+                using (var _context = new TFSEntity())
+                {
+                    var _item = _context.Inventories.Where(x => x.in_code == item).SingleOrDefault();
+                    if (_item != null)
+                    {
+                        _item.in_status = "archived";
+                        _context.Entry(_item);
+                        _context.SaveChanges();
+                        return Ok("Item Deleted Successfully!");
+                    }
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
         #endregion
     }
 }
