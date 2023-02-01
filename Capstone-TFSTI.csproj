@@ -237,7 +237,6 @@
     <Content Include="Content\images\warning.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
     <Content Include="Models\TFSEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TFSEntity.edmx</DependentUpon>
@@ -255,7 +254,6 @@
     <Content Include="Scripts\js\chart2.js" />
     <Content Include="Scripts\js\chart3.js" />
     <Content Include="Scripts\js\main.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\vendor\animate\animate.css" />
     <Content Include="Scripts\vendor\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Scripts\vendor\bootstrap\css\bootstrap-grid.min.css" />
