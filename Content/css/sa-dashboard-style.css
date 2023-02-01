@@ -17,20 +17,38 @@
 
 
 
+@media print {
+   body * {
+        visibility: hidden;
+    }
 
+    #printTable, #printTable * {
+        visibility: visible;
+    }
+
+    .inventory-buttons-style button, #hideAction, #hideActionBtn {
+        display: none;
+    }
+
+    #printTable {
+        position: absolute;
+        width:95%;
+        height:auto;
+        left: 0%;
+        top: 0%;
+    }
+}
 
 /* 00 -  GENERAL STYLES*/
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
-
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600&display=swap');
 
 @font-face {
     font-family: Poppins-Regular;
-    src: url('../fonts/poppins/Poppins-Regular.ttf'); 
-  }
+    src: url('../fonts/poppins/Poppins-Regular.ttf');
+}
   
   @font-face {
     font-family: Poppins-Bold;

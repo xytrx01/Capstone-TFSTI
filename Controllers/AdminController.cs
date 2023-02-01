@@ -48,6 +48,24 @@ namespace Capstone_TFSTI.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public ActionResult Inventory(string item)
+        {
+            var addCode = new Inventory()
+            {
+                in_code = item
+            };
+            var serializedModel = JsonConvert.SerializeObject(addCode);
+            var userToken = Session["access_token"].ToString();
+            var response = api_req.DeleteMethod("Warehouse/Inventory/Delete", userToken, serializedModel);
+
+            if (response != "BadRequest")
+            {
+                var json = JsonConvert.DeserializeObject(response);
+                ViewBag.Response = json.ToString();
+            }
+            return View();
+        }
         public ActionResult AddItem()
         {
             return View();
@@ -61,8 +79,11 @@ namespace Capstone_TFSTI.Controllers
                 var userToken = Session["access_token"].ToString();
                 var response = api_req.AddMethod("Warehouse/Inventory/Edit", userToken, serializedModel);
 
-                var json = JsonConvert.DeserializeObject(response);
-                ViewBag.Response = json.ToString();
+                if(response != "BadRequest")
+                {
+                    var json = JsonConvert.DeserializeObject(response);
+                    ViewBag.Response = json.ToString();
+                }
                 return View();
             }
             catch (Exception ex)

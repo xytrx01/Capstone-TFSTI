@@ -55,15 +55,15 @@ function setTable(array) {
             if (array[i].in_size === null) {
                 array[i].in_size = '';
             }
-
             var row = `<tr>`;
-            row += `<td><label>${array[i].in_code}</label></td><td><label>${array[i].in_name}</label></td><td><label>${array[i].in_category}</label></td><td><label>${array[i].in_type}</label></td><td><label>${array[i].in_size}</label></td><td><label>${array[i].in_quantity}</label></td>`;
-            row += `<td><div class="inventory-action-style">`;
-            row += `<button class="edit-btn" title="EDIT SELECTED ITEM" onclick="openEditForm()"> <a href="#"><span class="lar la-edit"></span></a></button>`;
+            row += `<form action="/Admin/Inventory?item=${array[i].in_code}" method="post" id="tableList">`;
+            row += `<td id="in_code"><label>${array[i].in_code}</label></td><td name="in_name"><label>${array[i].in_name}</label></td><td name="in_category"><label>${array[i].in_category}</label></td><td name="in_type"><label>${array[i].in_type}</label></td><td name="in_size"><label>${array[i].in_size}</label></td><td name="in_quantity"><label>${array[i].in_quantity}</label></td>`;
+            row += `</form>`;
+            row += `<td id="hideActionBtn"><div class="inventory-action-style">`;
             row += `<button class="del-btn" title="DELETE SELECTED ITEM" onclick="canOpenPopup()"> <a href="#"><span class="lar la-trash-alt"></span></a></button>`;
             row += `<button class="pri-btn" title="PRINT REPORT" onclick="printOpenPopup()"> <a href="#"><span class="las la-print"></span></a></button>`;
             row += `<button class="expo-btn" title="EXPORT REPORT" onclick="expoOpenPopup()"> <a href="#"><span class="las la-file-download"></span></a></button>`;
-            row += `</tr></div>`;
+            row += `</td></div>`;
             row += `</tr>`;
             table.innerHTML += row;
         }

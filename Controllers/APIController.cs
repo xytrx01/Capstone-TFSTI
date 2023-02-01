@@ -214,7 +214,7 @@ namespace Capstone_TFSTI.Controllers
                     {
                         id = int.Parse(val); // parse val into integer
                     }
-                    var user = _context.Inventories.Where(x => x.in_code.Contains(val) || x.in_name.Contains(val) || x.in_category.Contains(val) || x.in_type.Contains(val));
+                    var user = _context.Inventories.Where(x => x.in_code.Contains(val) || x.in_name.Contains(val) || x.in_category.Contains(val) || x.in_type.Contains(val) && x.in_status != "archived");
 
                     if (user != null)
                     {
@@ -282,7 +282,7 @@ namespace Capstone_TFSTI.Controllers
                             itemDB.in_quantity = _item.in_quantity;
                             _context.Entry(_item);
                             _context.SaveChanges();     //  Save to Database
-                            return Ok("Item Updated");
+                            return Ok("Process Completed!");
                         }
                         return BadRequest();
                     }
@@ -294,30 +294,32 @@ namespace Capstone_TFSTI.Controllers
                 return InternalServerError(ex);
             }
         }
-        //[Authorize(Roles = "admin,warehouse")]
-        //[Route("Warehouse/Inventory/Delete")]
-        //[HttpPost]
-        //public IHttpActionResult DeleteItem(int _itemID)
-        //{
-        //    try
-        //    {
-        //        using (var _context = new TFSEntity())
-        //        {
-        //            var item = _context.Inventories.Where(x => x.in_code == _itemID).SingleOrDefault();
-        //            if (item != null)
-        //            {
-        //                _context.Inventories.Remove(item); //   Remove() serves as delete in Entity Framework 6.0
-        //                _context.SaveChanges();
-        //                return Ok("Item Deleted");
-        //            }
-        //            return BadRequest();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return InternalServerError(ex);
-        //    }
-        //}
+        [Authorize(Roles = "admin,warehouse")]
+        [Route("Warehouse/Inventory/Delete")]
+        [HttpPost]
+        public IHttpActionResult DeleteItem(Inventory codeToFind)
+        {
+            try
+            {
+                var item = codeToFind.in_code;
+                using (var _context = new TFSEntity())
+                {
+                    var _item = _context.Inventories.Where(x => x.in_code == item).SingleOrDefault();
+                    if (_item != null)
+                    {
+                        _item.in_status = "archived";
+                        _context.Entry(_item);
+                        _context.SaveChanges();
+                        return Ok("Item Deleted Successfully!");
+                    }
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
         #endregion
     }
 }
