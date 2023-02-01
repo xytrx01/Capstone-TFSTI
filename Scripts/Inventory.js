@@ -61,11 +61,10 @@ function setTable(array) {
             row += `</form>`;
             row += `<td id="hideActionBtn"><div class="inventory-action-style">`;
             row += `<button class="del-btn" title="DELETE SELECTED ITEM" onclick="canOpenPopup()"> <a href="#"><span class="lar la-trash-alt"></span></a></button>`;
-            row += `<button class="pri-btn" title="PRINT REPORT" onclick="printOpenPopup()"> <a href="#"><span class="las la-print"></span></a></button>`;
-            row += `<button class="expo-btn" title="EXPORT REPORT" onclick="expoOpenPopup()"> <a href="#"><span class="las la-file-download"></span></a></button>`;
             row += `</td></div>`;
             row += `</tr>`;
             table.innerHTML += row;
+            filtered.length = 0;
         }
 
     }
@@ -145,5 +144,21 @@ function setField(value) {
             type.selectedIndex = i;
         } 
     }
-    console.log(`size val : ${size.value}`);
+   
+}
+
+function exportArrayToCsv() {
+    let newArray = [ ['Code','Name','Category','Type','Size','Quantity']];
+
+    for (var i = 0; i < fixedArray.length; i++) {
+        newArray.push([fixedArray[i].in_code, fixedArray[i].in_name, fixedArray[i].in_category, fixedArray[i].in_type, fixedArray[i].in_size, fixedArray[i].in_quantity]);
+    }
+    var csv = newArray.map(row => row.join(',')).join('\n');
+    // Create a hidden link
+    var link = document.createElement('a');
+    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv));
+    link.setAttribute('download', 'data.csv');
+
+    //// Trigger the download
+    link.click();
 }
