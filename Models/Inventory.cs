@@ -20,5 +20,6 @@ namespace Capstone_TFSTI.Models
         public string in_type { get; set; }
         public string in_size { get; set; }
         public string in_quantity { get; set; }
+        public string in_status { get; set; }
     }
 }

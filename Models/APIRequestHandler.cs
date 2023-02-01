@@ -2,7 +2,7 @@
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
-
+using System.Text;
 
 namespace Capstone_TFSTI.Models
 {
@@ -42,7 +42,7 @@ namespace Capstone_TFSTI.Models
                 //    Get Result Content
                 return result.Content.ReadAsStringAsync().Result;
             }
-            return result.ReasonPhrase;
+            return result.StatusCode.ToString();
         }
 
         public string AddMethod(string uri, string Token, string json)
@@ -65,7 +65,30 @@ namespace Capstone_TFSTI.Models
             {
                 return result.Content.ReadAsStringAsync().Result;
             }
-            return result.ReasonPhrase;
+            return result.StatusCode.ToString();
+        }
+
+        public string DeleteMethod(string uri, string token, string json)
+        {
+            if (_client.BaseAddress == null) // to prevent error, check if the base address if empty
+            {
+                _client.BaseAddress = new Uri(BaseDomain);
+            }
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var _json = JsonConvert.DeserializeObject(json);
+
+            var postTask = _client.PostAsJsonAsync(uri, _json); // Request Method
+            postTask.Wait(); // wait for result
+
+            var result = postTask.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                return result.Content.ReadAsStringAsync().Result;
+            }
+            return result.StatusCode.ToString();
         }
 
     }

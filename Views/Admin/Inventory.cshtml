@@ -1,4 +1,5 @@
-﻿
+﻿@using Capstone_TFSTI.Models
+@model Inventory
 @{
     ViewBag.Title = "Inventory";
     Layout = "~/Views/AdminLayout.cshtml";
@@ -20,32 +21,33 @@
         <div class="upper-section">
             <div class="search-wrapper">
                 <span class="las la-search"></span>
-                <input type="text" placeholder="Search here">
+                <input type="text" placeholder="Search here" onkeyup="SearchItem(this.value)">
             </div>
 
             <div class="dropdown">
                 <button class="drop-btn" onclick="myFunction()">
-                    <a> Select Category </a>
+                    <a id="selcat"> Select Category </a>
                     <span class="las la-chevron-circle-down"></span>
                 </button>
                 <div class="dropdown-content" id="myDropdown">
-                    <a href="#">Fittings</a>
-                    <a href="#">Gate Valves</a>
-                    <a href="#">Power Tools</a>
-                    <a href="#">Fire Extinguisher</a>
-                    <a href="#">Scaffolding</a>
-                    <a href="#">Others</a>
+                    <a href="#" onclick="SortByCategory(this.innerHTML)">Fittings</a>
+                    <a href="#" onclick="SortByCategory(this.innerHTML)">Gate Valves</a>
+                    <a href="#" onclick="SortByCategory(this.innerHTML)">Power Tools</a>
+                    <a href="#" onclick="SortByCategory(this.innerHTML)">Fire Extinguisher</a>
+                    <a href="#" onclick="SortByCategory(this.innerHTML)">Scaffolding</a>
+                    <a href="#" onclick="SortByCategory(this.innerHTML)">Others</a>
+                    <a href="#" onclick="SortByCategory('')">Clear</a>
                 </div>
             </div>
         </div>
 
         <div class="inventory-grid">
-            <div class="inventory-header">
+            <div class="inventory-header" id="tableTitle">
                 <h3>INVENTORY ITEMS</h3>
-                <div class="inventory-buttons-style">
+                <div class="inventory-buttons-style" id="hideBtn">
                     <button class="add-btn" title="ADD NEW ITEM"><a href="@Url.Action("AddItem","Admin")"><span class="las la-plus-circle"></span></a></button>
-                    <button class="pri-btn" title="PRINT REPORT" onclick="printOpenPopup()"> <a href="#"><span class="las la-print"></span></a></button>
-                    <button class="expo-btn" title="EXPORT REPORT" onclick="expoOpenPopup()"> <a href="#"><span class="las la-file-download"></span></a></button>
+                    <button class="pri-btn" title="PRINT REPORT" id="printBtn" @*onclick="printOpenPopup()"*@> <a href="#"><span class="las la-print"></span></a></button>
+                    <button class="expo-btn" title="EXPORT REPORT" onclick="expoOpenPopup() + exportTable()"> <a href="#"><span class="las la-file-download"></span></a></button>
                     <button class="inventory-sort-btn" onclick="userSortFunction()">
                         <a>
                             <span></span>
@@ -60,58 +62,23 @@
                 </div>
 
             </div>
-            <div class="inventory-projects">
+            <div class="inventory-projects" id="printTable">
                 <div class="inventory">
                     <div class="inventory-body">
                         <div class="table-responsive" style="overflow-x: auto;">
-                            <table width="100%">
+                            <table width="100%" id="myTable">
                                 <thead>
                                     <tr>
-                                        <td>ID</td>
+                                        <td>Code</td>
                                         <td>Name</td>
                                         <td>Category</td>
                                         <td>Type</td>
                                         <td>Size</td>
                                         <td>Quantity</td>
-                                        <td>Action</td>
+                                        <td id="hideAction">Action</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><label>00001</label></td>
-                                        <td><label>Clarisse C. Vaquez</label></td>
-                                        <td><label>Supervisor</label></td>
-                                        <td><label>0923758923</label></td>
-                                        <td><label>Supervisor</label></td>
-                                        <td><label>Supervisor</label></td>
-
-                                        <td>
-                                            <div class="inventory-action-style">
-                                                <button class="edit-btn" title="EDIT SELECTED ITEM" onclick="openEditForm()"> <a href="#"><span class="lar la-edit"></span></a></button>
-                                                <button class="del-btn" title="DELETE SELECTED ITEM" onclick="canOpenPopup()"> <a href="#"><span class="lar la-trash-alt"></span></a></button>
-                                                <button class="pri-btn" title="PRINT REPORT" onclick="printOpenPopup()"> <a href="#"><span class="las la-print"></span></a></button>
-                                                <button class="expo-btn" title="EXPORT REPORT" onclick="expoOpenPopup()"> <a href="#"><span class="las la-file-download"></span></a></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td><label>00001</label></td>
-                                        <td><label>Clarisse C. Vaquez</label></td>
-                                        <td><label>Supervisor</label></td>
-                                        <td><label>0923758923</label></td>
-                                        <td><label>Supervisor</label></td>
-                                        <td><label>Supervisor</label></td>
-
-                                        <td>
-                                            <div class="inventory-action-style">
-                                                <button class="edit-btn" title="EDIT SELECTED ITEM" onclick="openEditForm()"> <a href="#"><span class="lar la-edit"></span></a></button>
-                                                <button class="del-btn" title="DELETE SELECTED ITEM" onclick="canOpenPopup()"> <a href="#"><span class="lar la-trash-alt"></span></a></button>
-                                                <button class="pri-btn" title="PRINT REPORT" onclick="printOpenPopup()"> <a href="#"><span class="las la-print"></span></a></button>
-                                                <button class="expo-btn" title="EXPORT REPORT" onclick="expoOpenPopup()"> <a href="#"><span class="las la-file-download"></span></a></button>
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -124,16 +91,19 @@
             <img src="~/Content/images/warning.png">
             <h2>System Warning!</h2>
             <p>Are you sure you want to delete item on the list?</p>
-            <button type="button" onclick="remOpenPopup() + canClosePopup()">Yes</button>
+            <button type="submit" form="tableList" @*onclick="remOpenPopup() + canClosePopup()"*@>Yes</button>
             <button type="button" onclick="canClosePopup()">Cancel</button>
         </div>
 
-        <div class="rem-pop-container" id="rem-popup">
-            <img src="~/Content/images/remove.png">
-            <h2>Deleted!</h2>
-            <p>Item details has deleted in the list!</p>
-            <button type="button" onclick="remClosePopup()">OK</button>
-        </div>
+        @if (ViewBag.Response != null)
+        {
+            <div class="rem-pop-container-show" id="rem-popup">
+                <img src="~/Content/images/remove.png">
+                <h2>Deleted!</h2>
+                <p>@ViewBag.Response</p>
+                <button type="button" onclick="remClosePopup()">OK</button>
+            </div>
+        }
 
         <div class="print-pop-container" id="print-popup">
             <img src="~/Content/images/printer.png">
@@ -155,12 +125,20 @@
         /* When the user clicks on the button,
         toggle between hiding and showing the dropdown content */
 
-        windows.onload = function (e) {
+        window.onload = function () {
             GetAll();
         }
 
+        document.getElementById("printBtn").addEventListener("click", function () {
+            window.print();
+        });
+
         function myFunction() {
             document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        function exportTable() {
+            exportArrayToCsv();
         }
 
         // Close the dropdown if the user clicks outside of it
@@ -226,7 +204,5 @@
         function expoClosePopup() {
             expopopup.classList.remove("expo-popup-show")
         }
-
-
 
     </script>
