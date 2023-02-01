@@ -1,18 +1,35 @@
-﻿using System.Web.Mvc;
-using System.Data;
+﻿using System;
+using System.Web.Mvc;
 using Newtonsoft.Json;
 using Capstone_TFSTI.Models;
-using Capstone_TFSTI.ViewModel;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Capstone_TFSTI.Controllers
 {
     public class AdminController : Controller
     {
         // GET: Admin
-        // this comment is for testing
-       
+        readonly APIRequestHandler api_req = new APIRequestHandler();
+
+        public ActionResult FindDataOf()
+        {
+            try
+            {
+                var userToken = Session["access_token"].ToString();
+                var response = api_req.GetAllMethod("/Warehouse/Inventory", userToken);
+
+                var json = JsonConvert.DeserializeObject<List<Inventory>>(response);
+
+                JsonResult result = Json(json, JsonRequestBehavior.AllowGet); // return the value as JSON and allow Get Method
+                Response.ContentType = "application/json"; // Set the Content-Type header
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return Json(ex);
+            }
+        }
+
         public ActionResult Dashboard()
         {
             if(Session["emp_no"] == null)
@@ -31,21 +48,55 @@ namespace Capstone_TFSTI.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public ActionResult Inventory(string item)
+        {
+            var addCode = new Inventory()
+            {
+                in_code = item
+            };
+            var serializedModel = JsonConvert.SerializeObject(addCode);
+            var userToken = Session["access_token"].ToString();
+            var response = api_req.DeleteMethod("Warehouse/Inventory/Delete", userToken, serializedModel);
+
+            if (response != "BadRequest")
+            {
+                var json = JsonConvert.DeserializeObject(response);
+                ViewBag.Response = json.ToString();
+            }
+            return View();
+        }
         public ActionResult AddItem()
         {
             return View();
         }
-
-        //  Users
-       public ActionResult Users()
+        [HttpPost]
+        public ActionResult AddItem(Inventory item)
         {
-            TFSEntity obj = new TFSEntity();
-           
-            return View(obj.Employee.ToList());
+            try
+            {
+                var serializedModel = JsonConvert.SerializeObject(item);
+                var userToken = Session["access_token"].ToString();
+                var response = api_req.AddMethod("Warehouse/Inventory/Edit", userToken, serializedModel);
+
+                if(response != "BadRequest")
+                {
+                    var json = JsonConvert.DeserializeObject(response);
+                    ViewBag.Response = json.ToString();
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return View(ex);
+            }
         }
 
-       
-
+        //  Users
+        public ActionResult Users()
+        {
+            return View();
+        }
         public ActionResult AddUsers()
         {
             return View();
